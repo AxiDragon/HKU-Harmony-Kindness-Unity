@@ -19,16 +19,22 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        if (!Input.GetMouseButtonDown(0))
-            return;
+        if (Input.GetMouseButtonDown(0))
+        {     
+            currentDialog++;
+            ChangeText();
+        }
 
-        ChangeText();
+        if (Input.GetMouseButtonDown(1))
+        {
+            currentDialog = Mathf.Max(currentDialog - 1, 0);
+            ChangeText();
+        }
+
     }
 
     void ChangeText()
     {
-        currentDialog++;
-
         if (currentDialog == dialogue.Count)
         {
             gameObject.SetActive(false);
