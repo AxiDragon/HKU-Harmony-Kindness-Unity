@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlatformLooping : MonoBehaviour
 {
-    GameObject[] platforms;
+    [System.NonSerialized]
+    public GameObject[] platforms;
+
     GameObject player;
-    float platformLength;
+    [System.NonSerialized]
+    public float platformLength;
 
     public float speed;
 
@@ -35,7 +38,6 @@ public class PlatformLooping : MonoBehaviour
 
     public void LoopPlatforms(GameObject loopedPlatform)
     {
-        loopedPlatform.transform.position += new Vector3(0, 0, platformLength * (platforms.Length));
-
+        loopedPlatform.transform.position += new Vector3(0, 0, platformLength * platforms.Length);
     }
 }
