@@ -16,7 +16,8 @@ public class RunnerMovement : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-
+        float jump = Input.GetAxis("Jump");
         rb.AddForce(Vector3.right * horizontal * extraForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jump * extraForce, ForceMode.Impulse);
     }
 }
