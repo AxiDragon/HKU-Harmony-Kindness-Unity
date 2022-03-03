@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuffAndDebuff : MonoBehaviour
 {
+    Animator playerAnim;
     GameObject player;
     PlatformLooping platformLooping;
     float speedAdjustment;
@@ -13,6 +14,7 @@ public class BuffAndDebuff : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        playerAnim = player.GetComponent<Animator>();
 
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
@@ -46,6 +48,17 @@ public class BuffAndDebuff : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if (speedAdjustment >= 0)
+            {
+                if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitBuff"))
+                    playerAnim.SetTrigger("hitBuff");
+            }
+            else
+            {
+                if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitDebuff"))
+                    playerAnim.SetTrigger("hitDebuff");
+            }
+
             platformLooping.speed += speedAdjustment;
             Destroy(gameObject);
         }
