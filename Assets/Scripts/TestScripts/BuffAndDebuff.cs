@@ -21,6 +21,7 @@ public class BuffAndDebuff : MonoBehaviour
         if (gameObject.transform.root.gameObject == player)
         {
             originalPrefab = true;
+
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
@@ -38,10 +39,8 @@ public class BuffAndDebuff : MonoBehaviour
 
         transform.position += Vector3.back * platformLooping.speed;
 
-        if (player.transform.position.z < transform.position.z + 10f)
-            return;
-
-        Destroy(gameObject);
+        if (player.transform.position.z > transform.position.z + 10f)
+            Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)

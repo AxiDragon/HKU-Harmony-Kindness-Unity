@@ -36,9 +36,9 @@ public class RunnerMovement : MonoBehaviour
             jump = Input.GetAxis("Jump");
 
         float horizontal = Input.GetAxis("Horizontal");
-        rb.MovePosition(rb.position + (Vector3.right * horizontal * extraForce));
-        rb.AddForce(Vector3.right * horizontal * extraForce, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * jump * extraForce * 10, ForceMode.Impulse);
+        rb.MovePosition(rb.position + (Vector3.right * horizontal * extraForce * Time.deltaTime));
+        rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jump * extraForce * 10 * Time.deltaTime, ForceMode.Impulse);
     }
 
     void FixedUpdate()

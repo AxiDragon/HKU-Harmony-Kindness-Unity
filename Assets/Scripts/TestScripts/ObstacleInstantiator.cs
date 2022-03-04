@@ -24,7 +24,7 @@ public class ObstacleInstantiator : MonoBehaviour
         buff = GameObject.FindGameObjectWithTag("Basic Buff");
         debuff = GameObject.FindGameObjectWithTag("Basic Debuff");
 
-        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x - buff.GetComponent<Collider>().bounds.size.x;
+        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x - buff.GetComponentInChildren<Collider>().bounds.size.x;
     }
 
     void FixedUpdate()
