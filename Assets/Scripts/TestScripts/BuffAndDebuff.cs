@@ -26,12 +26,12 @@ public class BuffAndDebuff : MonoBehaviour
 
         platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
         if (tag == "Basic Buff")
-            speedAdjustment = 0.01f;
+            speedAdjustment = platformLooping.speed / 10;
         if (tag == "Basic Debuff")
-            speedAdjustment = -0.01f;
+            speedAdjustment = platformLooping.speed / -10;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (originalPrefab)
             return;

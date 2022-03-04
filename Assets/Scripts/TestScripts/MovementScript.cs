@@ -19,8 +19,6 @@ public class MovementScript : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-
-
         Vector3 moveVector = Quaternion.Euler(0, -45, 0) * new Vector3(horizontal, 0f, vertical) * Time.deltaTime * speed;
 
         rb.MovePosition(rb.transform.position + moveVector);

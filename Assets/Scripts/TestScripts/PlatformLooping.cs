@@ -28,7 +28,7 @@ public class PlatformLooping : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         foreach (GameObject platform in platforms)
         {

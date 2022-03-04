@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab45c3185de0d7a468b40cabf70175dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 1
 --- !u!114 &248834107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a2625337c31724ba39ee1dbdcc08a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 2
+  spawnCooldown: 8
   limitTime: 180
 --- !u!1 &488796570
 GameObject:
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbafae20ef0c164fb05fed29bf7d161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraForce: 0.04
+  extraForce: 0.1
   groundDistance: 0.4
 --- !u!95 &682907028
 Animator:
