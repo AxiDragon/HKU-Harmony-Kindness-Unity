@@ -9,8 +9,6 @@ public class BuffAndDebuff : MonoBehaviour
     PlatformLooping platformLooping;
     float speedAdjustment;
 
-    bool originalPrefab = false;
-
     void Start()
     {
         player = GameObject.Find("Player");
@@ -18,14 +16,8 @@ public class BuffAndDebuff : MonoBehaviour
 
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-        if (gameObject.transform.root.gameObject == player)
-        {
-            originalPrefab = true;
-
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-
         platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
+
         if (tag == "Basic Buff")
             speedAdjustment = platformLooping.speed / 10;
         if (tag == "Basic Debuff")
@@ -34,13 +26,10 @@ public class BuffAndDebuff : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (originalPrefab)
-            return;
+        transform.parent.position += Vector3.back * platformLooping.speed;
 
-        transform.position += Vector3.back * platformLooping.speed;
-
-        if (player.transform.position.z > transform.position.z + 10f)
-            Destroy(gameObject);
+        if (player.transform.position.z > transform.parent.position.z + 10f)
+            Destroy(transform.parent.gameObject);
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,7 +48,7 @@ public class BuffAndDebuff : MonoBehaviour
             }
 
             platformLooping.speed += speedAdjustment;
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

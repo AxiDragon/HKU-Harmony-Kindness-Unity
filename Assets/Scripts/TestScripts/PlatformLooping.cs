@@ -12,9 +12,15 @@ public class PlatformLooping : MonoBehaviour
     public float platformLength;
 
     public float speed;
+    float baseSpeed;
+
+    Camera mainCamera;
 
     void Awake()
     {
+        mainCamera = GameObject.Find("Main Camera").gameObject.GetComponent<Camera>();
+        baseSpeed = speed;
+
         player = GameObject.FindGameObjectWithTag("Player");
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         platformLength = (platforms[0].GetComponent<Collider>().bounds.size).z;
@@ -34,6 +40,14 @@ public class PlatformLooping : MonoBehaviour
         {
             platform.transform.position += Vector3.back * speed;
         }
+
+        mainCamera.fieldOfView = Mathf.Clamp(70f * (speed / baseSpeed), 30f, 90f);
+    }
+
+    public IEnumerator ChangeCameraFieldOfView()
+    {
+
+        yield return new WaitForFixedUpdate();
     }
 
     public void LoopPlatforms(GameObject loopedPlatform)
