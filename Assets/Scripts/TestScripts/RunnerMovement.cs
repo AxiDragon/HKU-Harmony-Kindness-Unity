@@ -14,10 +14,8 @@ public class RunnerMovement : MonoBehaviour
     Transform groundCheck;
     LayerMask groundMask;
 
-
     void Start()
     {
-
         groundCheck = transform.Find("GroundCheck");
         groundMask = LayerMask.GetMask("Ground");
         playerAnim = GetComponent<Animator>();
@@ -35,8 +33,8 @@ public class RunnerMovement : MonoBehaviour
 
         float horizontal = Input.GetAxis("Horizontal");
 
-        rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * jump * extraForce * 10 * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime);
+        rb.AddForce(Vector3.up * jump * extraForce * Time.deltaTime);
     }
 
     void FixedUpdate()

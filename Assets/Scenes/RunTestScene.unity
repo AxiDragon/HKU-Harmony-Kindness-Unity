@@ -421,12 +421,12 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682907021}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &682907027
@@ -441,8 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbafae20ef0c164fb05fed29bf7d161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraForce: 24
-  groundDistance: 0.4
+  extraForce: 250
+  groundDistance: 0.1
 --- !u!95 &682907028
 Animator:
   serializedVersion: 3
