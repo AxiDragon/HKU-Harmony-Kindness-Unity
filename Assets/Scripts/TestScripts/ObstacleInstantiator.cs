@@ -24,9 +24,11 @@ public class ObstacleInstantiator : MonoBehaviour
 
     void Start()
     {
+        nextSpawnTime = Time.time;
+
         platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
 
-        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x - buff.GetComponentInChildren<Collider>().bounds.size.x;
+        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x - buff.GetComponentInChildren<Collider>().bounds.size.x * 3;
     }
 
     void FixedUpdate()
@@ -52,7 +54,7 @@ public class ObstacleInstantiator : MonoBehaviour
                 obstacle = debuff;
             }
 
-            Vector3 position = new Vector3(Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), platformLooping.platforms[0].transform.position.y + 1.5f, platformLooping.platformLength * (platformLooping.platforms.Length - 1.7f));
+            Vector3 position = new Vector3(platformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), platformLooping.platforms[0].transform.position.y + 1.5f, platformLooping.platformLength * (platformLooping.platforms.Length - 1.7f));
             
             Instantiate(obstacle, position, new Quaternion(0f, 0f, 0f, 0f));
         }

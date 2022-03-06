@@ -7,7 +7,7 @@ public class AreaTalk : MonoBehaviour
 {
     GameObject dialogue;
     [Tooltip("Executes different events based on its number. Check AreaTalk.cs!")]
-    public int communicatorNumber;
+    public static int gamePhase;
     bool inRange = false;
     bool talking = false;
 
@@ -20,7 +20,18 @@ public class AreaTalk : MonoBehaviour
     void Update()
     {
         if ((!dialogue.activeInHierarchy) && talking)
-            SceneManager.LoadScene(2);
+            switch (gamePhase){
+                case 0:
+                    LoadingScreen.sceneNumber = 2;
+                    SceneManager.LoadScene("LoadingScreen");
+                    gamePhase++;
+                    break;
+                case 1:
+                    LoadingScreen.sceneNumber = 2;
+                    SceneManager.LoadScene("LoadingScreen");
+                    gamePhase++;
+                    break;
+            }
 
         if (!inRange || !Input.GetKeyDown("e"))
             return;
