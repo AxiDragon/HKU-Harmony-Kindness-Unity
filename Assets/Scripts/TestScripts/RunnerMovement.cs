@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RunnerMovement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class RunnerMovement : MonoBehaviour
     Rigidbody rb;
     [Tooltip("Force multiplier applied to the player cube.")]
     public float extraForce;
+    [Tooltip("Force multiplier applied to the player cube for jumps (multiplied by extraForce).")]
+    public float jumpForce;
     public float groundDistance;
     bool isGrounded = true;
 
@@ -26,15 +29,15 @@ public class RunnerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        float jump = 0;
-
-        if (isGrounded)
-            jump = Input.GetAxis("Jump");
+        if (isGrounded && Input.GetKeyDown("space"))
+            rb.AddForce(Vector3.up * extraForce * jumpForce, ForceMode.Impulse);
 
         float horizontal = Input.GetAxis("Horizontal");
 
         rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime);
-        rb.AddForce(Vector3.up * jump * extraForce * Time.deltaTime);
+
+        if (transform.position.y < -1)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void FixedUpdate()

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AreaTalk : MonoBehaviour
 {
     GameObject dialogue;
-
-    bool inRange;
+    [Tooltip("Executes different events based on its number. Check AreaTalk.cs!")]
+    public int communicatorNumber;
+    bool inRange = false;
+    bool talking = false;
 
     void Awake()
     {
@@ -16,9 +19,13 @@ public class AreaTalk : MonoBehaviour
 
     void Update()
     {
-        if (!inRange || !Input.GetKey("Use"))
+        if ((!dialogue.activeInHierarchy) && talking)
+            SceneManager.LoadScene(2);
+
+        if (!inRange || !Input.GetKeyDown("e"))
             return;
 
+        talking = true;
         dialogue.SetActive(true);
     }
 

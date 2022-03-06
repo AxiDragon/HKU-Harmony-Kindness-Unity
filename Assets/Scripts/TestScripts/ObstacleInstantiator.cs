@@ -49,8 +49,7 @@ public class ObstacleInstantiator : MonoBehaviour
             }
             else
             {
-                //obstacle = debuff;
-                obstacle = buff;
+                obstacle = debuff;
             }
 
             Vector3 position = new Vector3(Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), platformLooping.platforms[0].transform.position.y + 1.5f, platformLooping.platformLength * (platformLooping.platforms.Length - 1.7f));

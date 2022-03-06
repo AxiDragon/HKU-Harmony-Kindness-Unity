@@ -441,8 +441,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbafae20ef0c164fb05fed29bf7d161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraForce: 250
-  groundDistance: 0.1
+  extraForce: 75
+  jumpForce: 0.003
+  groundDistance: 0.4
 --- !u!95 &682907028
 Animator:
   serializedVersion: 3
