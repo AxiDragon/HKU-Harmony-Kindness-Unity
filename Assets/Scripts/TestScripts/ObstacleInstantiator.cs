@@ -73,6 +73,11 @@ public class ObstacleInstantiator : MonoBehaviour
         StartCoroutine(CameraShake());
     }
 
+    public void StartBuffBoostMove()
+    {
+        StartCoroutine(BuffBoostMove());
+    }
+
     public void StartFOVAdjust(float currentSpeed, float speedAdjust)
     {
         float currentFOV = 60f * currentSpeed / platformLooping.baseSpeed;
@@ -106,4 +111,22 @@ public class ObstacleInstantiator : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator BuffBoostMove()
+    {
+        Vector3 movePos = originalPos + Vector3.back * 10f;
+
+        for (float t = 0; cameraParent.transform.localPosition != movePos; t += Time.deltaTime)
+        {
+            cameraParent.transform.localPosition = Vector3.Slerp(originalPos, movePos, t);
+            yield return null;
+        }
+
+        for (float t = 0; cameraParent.transform.localPosition != originalPos; t += Time.deltaTime)
+        {
+            cameraParent.transform.localPosition = Vector3.Slerp(movePos, originalPos, t);
+            yield return null;
+        }
+    }
+    
 }

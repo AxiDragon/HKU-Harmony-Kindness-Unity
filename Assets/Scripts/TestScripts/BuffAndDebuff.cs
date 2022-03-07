@@ -40,6 +40,8 @@ public class BuffAndDebuff : MonoBehaviour
             {
                 if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitBuff"))
                     playerAnim.SetTrigger("hitBuff");
+
+                obstacle.StartBuffBoostMove();
             }
             else
             {
