@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Scoring : MonoBehaviour
 {
+    CanvasGroup whiteFlash;
     Text scoreText;
     PlatformLooping platformLooping;
     ObstacleInstantiator obstacleInstantiator;
@@ -13,12 +14,16 @@ public class Scoring : MonoBehaviour
     float score = 0;
     bool cutsceneTriggered = false;
 
-    void Start()
+    void Awake()
     {
+        whiteFlash = FindObjectOfType<CanvasGroup>().GetComponent<CanvasGroup>();
         obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
         scoreText = FindObjectOfType<Text>().GetComponent<Text>();
         scoreText.text = score.ToString();
         platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
+
+        //debug
+        //AreaTalk.gamePhase = 1;
     }
 
     void Update()
@@ -30,11 +35,11 @@ public class Scoring : MonoBehaviour
         switch (AreaTalk.gamePhase)
         {
             case 1:
-                if ((score > 75) && !cutsceneTriggered)
+                if ((score > 50) && !cutsceneTriggered)
                 {
                     cutsceneTriggered = true;
-                    LoadingScreen.sceneNumber = AreaTalk.gamePhase + 2;
-                    SceneManager.LoadScene("LoadingScreen");
+                    LoadingScreen.sceneNumber = 3;
+                    StartCoroutine(StartFlashback());
                 }
                 break;
             default:
@@ -44,6 +49,12 @@ public class Scoring : MonoBehaviour
 
     IEnumerator StartFlashback()
     {
-        yield return new WaitForEndOfFrame();
+        while (whiteFlash.alpha < 1)
+        {
+
+            whiteFlash.alpha += Time.deltaTime / 2;
+            yield return new WaitForEndOfFrame();
+        }
+        SceneManager.LoadScene("LoadingScreen");
     }
 }

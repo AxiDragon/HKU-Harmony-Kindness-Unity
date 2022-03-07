@@ -7,14 +7,14 @@ public class BuffAndDebuff : MonoBehaviour
     Animator playerAnim;
     GameObject player;
     PlatformLooping platformLooping;
+    ObstacleInstantiator obstacle;
     float speedAdjustment;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.Find("Player");
         playerAnim = player.GetComponent<Animator>();
-
-        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        obstacle = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
 
         platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
 
@@ -45,8 +45,11 @@ public class BuffAndDebuff : MonoBehaviour
             {
                 if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitDebuff"))
                     playerAnim.SetTrigger("hitDebuff");
+
+                obstacle.StartCameraShake();
             }
 
+            obstacle.StartFOVAdjust(platformLooping.speed, speedAdjustment);
             platformLooping.speed += speedAdjustment;
             Destroy(transform.parent.gameObject);
         }

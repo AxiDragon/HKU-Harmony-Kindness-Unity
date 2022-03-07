@@ -11,9 +11,13 @@ public class ObstacleInstantiator : MonoBehaviour
     float platformWidth;
     PlatformLooping platformLooping;
 
+    GameObject cameraParent;
+    Camera playerCamera;
+
     public bool maxSpawnsActive = false;
     public int maxSpawnTest = 1;
     int spawned = 0;
+    Vector3 originalPos;
 
     [Tooltip("Approximation of how long it should take to spawn in another obstacle.")]
     public float spawnCooldown = 2f;
@@ -22,13 +26,17 @@ public class ObstacleInstantiator : MonoBehaviour
     [Tooltip("Approximation of how long it should take to nearly guarantee only negative obstacles")]
     public float limitTime = 180f;
 
-    void Start()
+    void Awake()
     {
         nextSpawnTime = Time.time;
+        
+        cameraParent = FindObjectOfType<Camera>().transform.parent.gameObject;
+        playerCamera = FindObjectOfType<Camera>().GetComponent<Camera>();
 
+        originalPos = cameraParent.transform.position;
         platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
 
-        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x - buff.GetComponentInChildren<Collider>().bounds.size.x * 3;
+        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x * 0.8f;
     }
 
     void FixedUpdate()
@@ -57,6 +65,45 @@ public class ObstacleInstantiator : MonoBehaviour
             Vector3 position = new Vector3(platformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), platformLooping.platforms[0].transform.position.y + 1.5f, platformLooping.platformLength * (platformLooping.platforms.Length - 1.7f));
             
             Instantiate(obstacle, position, new Quaternion(0f, 0f, 0f, 0f));
+        }
+    }
+
+    public void StartCameraShake()
+    {
+        StartCoroutine(CameraShake());
+    }
+
+    public void StartFOVAdjust(float currentSpeed, float speedAdjust)
+    {
+        float currentFOV = 60f * currentSpeed / platformLooping.baseSpeed;
+        float futureFOV = Mathf.Clamp(60f * (currentSpeed + speedAdjust) / platformLooping.baseSpeed, 30f, 100f);
+
+        StartCoroutine(CameraFOVAdjust(currentFOV, futureFOV));
+    }
+
+    IEnumerator CameraShake()
+    {
+        float duration = platformLooping.speed / 5;
+        float magnitude = duration / 20;
+
+        while (duration > 0f)
+        {
+            cameraParent.transform.localPosition = originalPos + new Vector3(Random.Range(-magnitude, magnitude), Random.Range(-magnitude, magnitude), Random.Range(-magnitude, magnitude));
+            cameraParent.transform.localRotation = Quaternion.Euler(Random.Range(-magnitude * 90, magnitude * 90), Random.Range(-magnitude * 90, magnitude * 90), Random.Range(-magnitude * 90, magnitude * 90));
+            duration -= Time.deltaTime;
+            magnitude = duration / 20;
+            yield return null;
+        }
+        cameraParent.transform.localPosition = originalPos;
+        cameraParent.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+
+    IEnumerator CameraFOVAdjust(float startFOV, float endFOV)
+    {
+        for (float t = 0;  playerCamera.fieldOfView != endFOV; t += Time.deltaTime)
+        {
+            playerCamera.fieldOfView = Mathf.SmoothStep(startFOV, endFOV, t);
+            yield return null;
         }
     }
 }
