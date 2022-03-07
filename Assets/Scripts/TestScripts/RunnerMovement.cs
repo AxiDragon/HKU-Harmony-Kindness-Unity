@@ -17,7 +17,7 @@ public class RunnerMovement : MonoBehaviour
     Transform groundCheck;
     LayerMask groundMask;
 
-    void Start()
+    void Awake()
     {
         groundCheck = transform.Find("GroundCheck");
         groundMask = LayerMask.GetMask("Ground");

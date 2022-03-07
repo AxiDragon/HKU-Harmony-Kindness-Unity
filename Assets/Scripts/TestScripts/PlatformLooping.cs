@@ -1,6 +1,7 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlatformLooping : MonoBehaviour
 {
@@ -12,7 +13,12 @@ public class PlatformLooping : MonoBehaviour
     public float platformLength;
 
     public float speed;
-    float baseSpeed;
+    [Tooltip("Lowest speed the player may reach before being presented with a game over.")]
+    public float lowestSpeed;
+    [Tooltip("Highest speed the player can reach. (Mainly to secure that the player will not phase through collisions)")]
+    public float maxSpeed;
+    [System.NonSerialized]
+    public float baseSpeed;
 
     Camera mainCamera;
 
@@ -37,21 +43,22 @@ public class PlatformLooping : MonoBehaviour
     void FixedUpdate()
     {
         foreach (GameObject platform in platforms)
-        {
             platform.transform.position += Vector3.back * speed;
-        }
 
-        mainCamera.fieldOfView = Mathf.Clamp(70f * (speed / baseSpeed), 30f, 90f);
-    }
+        if (speed > maxSpeed)
+            speed = maxSpeed;
 
-    public IEnumerator ChangeCameraFieldOfView()
-    {
-
-        yield return new WaitForFixedUpdate();
+        if (speed < lowestSpeed)
+            GameOver();
     }
 
     public void LoopPlatforms(GameObject loopedPlatform)
     {
         loopedPlatform.transform.position += new Vector3(0, 0, platformLength * platforms.Length);
+    }
+
+    void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

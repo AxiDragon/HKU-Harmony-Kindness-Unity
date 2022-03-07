@@ -10,7 +10,7 @@ public class GhostFollow : MonoBehaviour
     public float followDistance = 1;
     public float lag = 5;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;    
     }
