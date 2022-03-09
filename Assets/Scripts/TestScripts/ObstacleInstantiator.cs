@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ObstacleInstantiator : MonoBehaviour
 {
-    [Tooltip("Put a buff prefab here.")]
-    public GameObject buff;
-    [Tooltip("Put a debuff prefab here.")]
-    public GameObject debuff;
+    [Tooltip("Put buff prefabs here.")]
+    public GameObject[] buffs;
+    [Tooltip("Put debuff prefabs here.")]
+    public GameObject[] debuffs;
+
     float platformWidth;
-    PlatformLooping platformLooping;
+    PlatformLooping PlatformLooping;
 
     GameObject cameraParent;
     Camera playerCamera;
@@ -29,14 +30,14 @@ public class ObstacleInstantiator : MonoBehaviour
     void Awake()
     {
         nextSpawnTime = Time.time;
+        limitTime += Time.time;
         
         cameraParent = FindObjectOfType<Camera>().transform.parent.gameObject;
         playerCamera = FindObjectOfType<Camera>().GetComponent<Camera>();
 
         originalPos = cameraParent.transform.position;
-        platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
 
-        platformWidth = platformLooping.platforms[0].GetComponent<Collider>().bounds.size.x * 0.8f;
+        platformWidth = PlatformLooping.platforms[0].GetComponent<Collider>().bounds.size.x * 0.8f;
     }
 
     void FixedUpdate()
@@ -48,21 +49,21 @@ public class ObstacleInstantiator : MonoBehaviour
         {
             spawned++;
 
-            nextSpawnTime += spawnCooldown * Random.Range(0.1f, 2f) / platformLooping.speed / (3 - (3 / (Time.time + 3)));
+            nextSpawnTime += spawnCooldown * Random.Range(0.1f, 2f) / PlatformLooping.speed / (3 - (3 / (Time.time + 3)));
 
             float obstacleRandomizer = Random.Range(0f, 2f);
             GameObject obstacle;
 
             if (obstacleRandomizer > (2 * Time.time / limitTime))
             {
-                obstacle = buff;
+                obstacle = buffs[Random.Range(0, buffs.Length)];
             }
             else
             {
-                obstacle = debuff;
+                obstacle = debuffs[Random.Range(0, debuffs.Length)];
             }
 
-            Vector3 position = new Vector3(platformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), platformLooping.platforms[0].transform.position.y + 1.5f, platformLooping.platformLength * (platformLooping.platforms.Length - 1.7f));
+            Vector3 position = new Vector3(PlatformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), PlatformLooping.platforms[0].transform.position.y + 1.5f, PlatformLooping.platformLength * (PlatformLooping.platforms.Length - 1.7f));
             
             Instantiate(obstacle, position, new Quaternion(0f, 0f, 0f, 0f));
         }
@@ -80,15 +81,15 @@ public class ObstacleInstantiator : MonoBehaviour
 
     public void StartFOVAdjust(float currentSpeed, float speedAdjust)
     {
-        float currentFOV = 60f * currentSpeed / platformLooping.baseSpeed;
-        float futureFOV = Mathf.Clamp(60f * (currentSpeed + speedAdjust) / platformLooping.baseSpeed, 30f, 100f);
+        float currentFOV = 60f * currentSpeed / PlatformLooping.baseSpeed;
+        float futureFOV = Mathf.Clamp(60f * (currentSpeed + speedAdjust) / PlatformLooping.baseSpeed, 30f, 100f);
 
         StartCoroutine(CameraFOVAdjust(currentFOV, futureFOV));
     }
 
     IEnumerator CameraShake()
     {
-        float duration = platformLooping.speed / 5;
+        float duration = PlatformLooping.speed / 5;
         float magnitude = duration / 20;
 
         while (duration > 0f)

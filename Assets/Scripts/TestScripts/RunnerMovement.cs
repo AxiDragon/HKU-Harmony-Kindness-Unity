@@ -36,6 +36,9 @@ public class RunnerMovement : MonoBehaviour
 
         rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime);
 
+        Vector3 rotation = Vector3.forward * (rb.velocity.x / 5);
+        transform.rotation = Quaternion.Euler(rotation);
+
         if (transform.position.y < -1)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

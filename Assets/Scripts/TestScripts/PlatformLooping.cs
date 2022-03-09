@@ -6,25 +6,21 @@ using UnityEngine.SceneManagement;
 public class PlatformLooping : MonoBehaviour
 {
     [System.NonSerialized]
-    public GameObject[] platforms;
+    public static GameObject[] platforms;
 
     GameObject player;
     [System.NonSerialized]
-    public float platformLength;
+    public static float platformLength, baseSpeed, speed;
 
-    public float speed;
+    public float startSpeed;
     [Tooltip("Lowest speed the player may reach before being presented with a game over.")]
     public float lowestSpeed;
     [Tooltip("Highest speed the player can reach. (Mainly to secure that the player will not phase through collisions)")]
     public float maxSpeed;
-    [System.NonSerialized]
-    public float baseSpeed;
-
-    Camera mainCamera;
 
     void Awake()
     {
-        mainCamera = GameObject.Find("Main Camera").gameObject.GetComponent<Camera>();
+        speed = startSpeed;
         baseSpeed = speed;
 
         player = GameObject.FindGameObjectWithTag("Player");

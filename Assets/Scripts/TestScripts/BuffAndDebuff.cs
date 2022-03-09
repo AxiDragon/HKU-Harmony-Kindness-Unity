@@ -6,29 +6,48 @@ public class BuffAndDebuff : MonoBehaviour
 {
     Animator playerAnim;
     GameObject player;
-    PlatformLooping platformLooping;
     ObstacleInstantiator obstacle;
     float speedAdjustment;
+
+    bool isMoving()
+    {
+        foreach (AnimatorControllerParameter parameter in playerAnim.parameters)
+        {
+            if (parameter.name == "speed")
+                return true;
+        }
+        return false;
+    }
 
     void Awake()
     {
         player = GameObject.Find("Player");
+
         playerAnim = player.GetComponent<Animator>();
+
         obstacle = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
 
-        platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
+        if (isMoving())
+            playerAnim.SetFloat("speed", PlatformLooping.speed);
 
-        if (tag == "Basic Buff")
-            speedAdjustment = platformLooping.speed / 10;
-        if (tag == "Basic Debuff")
-            speedAdjustment = platformLooping.speed / -10;
+        switch (tag)
+        {
+            case "Basic Buff":
+                speedAdjustment = PlatformLooping.speed / 10;
+                break;
+            case "Basic Debuff":
+                speedAdjustment = PlatformLooping.speed / -5;
+                break;
+            default:
+                break;
+        }
     }
 
     void FixedUpdate()
     {
-        transform.parent.position += Vector3.back * platformLooping.speed;
+        transform.root.position += Vector3.back * PlatformLooping.speed;
 
-        if (player.transform.position.z > transform.parent.position.z + 10f)
+        if (player.transform.position.z > transform.root.position.z + 10f)
             Destroy(transform.parent.gameObject);
     }
 
@@ -51,9 +70,9 @@ public class BuffAndDebuff : MonoBehaviour
                 obstacle.StartCameraShake();
             }
 
-            obstacle.StartFOVAdjust(platformLooping.speed, speedAdjustment);
-            platformLooping.speed += speedAdjustment;
-            Destroy(transform.parent.gameObject);
+            obstacle.StartFOVAdjust(PlatformLooping.speed, speedAdjustment);
+            PlatformLooping.speed += speedAdjustment;
+            Destroy(transform.root.gameObject);
         }
     }
 }

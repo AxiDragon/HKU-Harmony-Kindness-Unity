@@ -8,7 +8,6 @@ public class Scoring : MonoBehaviour
 {
     CanvasGroup whiteFlash;
     Text scoreText;
-    PlatformLooping platformLooping;
     ObstacleInstantiator obstacleInstantiator;
 
     float score = 0;
@@ -20,7 +19,6 @@ public class Scoring : MonoBehaviour
         obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
         scoreText = FindObjectOfType<Text>().GetComponent<Text>();
         scoreText.text = score.ToString();
-        platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
 
         //debug
         //AreaTalk.gamePhase = 1;
@@ -28,7 +26,7 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        score += Time.deltaTime * platformLooping.speed;
+        score += Time.deltaTime * PlatformLooping.speed;
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
 
