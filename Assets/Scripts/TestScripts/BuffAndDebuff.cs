@@ -57,6 +57,7 @@ public class BuffAndDebuff : MonoBehaviour
         {
             if (speedAdjustment >= 0)
             {
+                //go here
                 if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitBuff"))
                     playerAnim.SetTrigger("hitBuff");
 
