@@ -10,7 +10,6 @@ public class ObstacleInstantiator : MonoBehaviour
     public GameObject[] debuffs;
 
     float platformWidth;
-    PlatformLooping PlatformLooping;
 
     GameObject cameraParent;
     Camera playerCamera;

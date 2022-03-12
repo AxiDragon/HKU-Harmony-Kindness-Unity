@@ -26,10 +26,7 @@ public class SliceableBuffAndDebuff : MonoBehaviour
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(cameraRay, out RaycastHit hit, 1000f))
-        {
-            print(hit.collider.gameObject);
             if (hit.collider.gameObject == sliceableObject)
-                print("yep that's the one");
-        }
+                buffAndDebuff.TriggerSliceable();
     }
 }

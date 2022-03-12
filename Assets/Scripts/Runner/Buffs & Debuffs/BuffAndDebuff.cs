@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuffAndDebuff : MonoBehaviour
 {
-    Animator playerAnim;
+    Animator playerAnim, objectAnim;
     GameObject player;
     ObstacleInstantiator obstacle;
     float speedAdjustment;
@@ -24,6 +24,7 @@ public class BuffAndDebuff : MonoBehaviour
         player = GameObject.Find("Player");
 
         playerAnim = player.GetComponent<Animator>();
+        objectAnim = transform.parent.GetComponent<Animator>();
 
         obstacle = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
 
@@ -48,7 +49,10 @@ public class BuffAndDebuff : MonoBehaviour
         transform.root.position += Vector3.back * PlatformLooping.speed;
 
         if (player.transform.position.z > transform.root.position.z + 10f)
-            Destroy(transform.parent.gameObject);
+            if (gameObject.name.Contains("Slice") && speedAdjustment < 0)
+                TriggerSliceable();
+            else
+                Destroy(transform.root.gameObject);
     }
 
     void OnTriggerEnter(Collider other)
@@ -73,7 +77,38 @@ public class BuffAndDebuff : MonoBehaviour
 
             obstacle.StartFOVAdjust(PlatformLooping.speed, speedAdjustment);
             PlatformLooping.speed += speedAdjustment;
-            Destroy(transform.root.gameObject);
+            StartCoroutine(DestroyAnimation());
         }
+    }
+
+    IEnumerator DestroyAnimation()
+    {
+        objectAnim.SetTrigger("pickedUp");
+        while (!objectAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
+            yield return null;
+
+        Destroy(transform.root.gameObject);
+    }
+
+    public void TriggerSliceable()
+    {
+        if (speedAdjustment >= 0)
+        {
+            if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitBuff"))
+                playerAnim.SetTrigger("hitBuff");
+
+            obstacle.StartBuffBoostMove();
+        }
+        else
+        {
+            if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitDebuff"))
+                playerAnim.SetTrigger("hitDebuff");
+
+            obstacle.StartCameraShake();
+        }
+
+        obstacle.StartFOVAdjust(PlatformLooping.speed, speedAdjustment);
+        PlatformLooping.speed += speedAdjustment;
+        StartCoroutine(DestroyAnimation());
     }
 }
