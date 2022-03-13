@@ -128,5 +128,4 @@ public class ObstacleInstantiator : MonoBehaviour
             yield return null;
         }
     }
-    
 }

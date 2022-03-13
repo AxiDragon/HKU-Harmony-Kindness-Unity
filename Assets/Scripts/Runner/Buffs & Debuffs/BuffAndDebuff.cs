@@ -61,7 +61,6 @@ public class BuffAndDebuff : MonoBehaviour
         {
             if (speedAdjustment >= 0)
             {
-                //go here
                 if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitBuff"))
                     playerAnim.SetTrigger("hitBuff");
 
@@ -106,6 +105,9 @@ public class BuffAndDebuff : MonoBehaviour
 
             obstacle.StartCameraShake();
         }
+
+        if (transform.root.Find("Character"))
+            transform.root.Find("Character").GetComponent<Animator>().SetTrigger("destroyText");
 
         obstacle.StartFOVAdjust(PlatformLooping.speed, speedAdjustment);
         PlatformLooping.speed += speedAdjustment;

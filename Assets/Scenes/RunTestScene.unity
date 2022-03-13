@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 1
-  lowestSpeed: 0.9
+  lowestSpeed: 0.8
   maxSpeed: 3.1
 --- !u!114 &248834107
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   maxSpawnsActive: 0
   maxSpawnTest: 0
   spawnCooldown: 8
-  limitTime: 90
+  limitTime: 120
 --- !u!1001 &300653114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8642645408204596028, guid: bc91e5f73cb3e5544b189e25e6c7b797, type: 3}
       propertyPath: m_Name
-      value: Player2
+      value: PlayerDes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc91e5f73cb3e5544b189e25e6c7b797, type: 3}
@@ -879,7 +879,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8187542696977436037, guid: b688a6b9aea886e48b50a89db490410e, type: 3}
       propertyPath: m_Name
-      value: Player1
+      value: PlayerDev
       objectReference: {fileID: 0}
     - target: {fileID: 8187542696977436057, guid: b688a6b9aea886e48b50a89db490410e, type: 3}
       propertyPath: m_RootOrder
@@ -1464,6 +1464,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1538331638}
     m_Modifications:
+    - target: {fileID: 1097063945792134754, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3906341638055520105, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1510,7 +1514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3906341638055520117, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PlayerArt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
