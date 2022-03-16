@@ -26,11 +26,11 @@ public class ObstacleInstantiator : MonoBehaviour
     [Tooltip("Approximation of how long it should take to nearly guarantee only negative obstacles")]
     public float limitTime = 180f;
 
-    void Awake()
+    void Start()
     {
         nextSpawnTime = Time.time;
         limitTime += Time.time;
-        
+
         cameraParent = FindObjectOfType<Camera>().transform.parent.gameObject;
         playerCamera = FindObjectOfType<Camera>().GetComponent<Camera>();
 
@@ -63,7 +63,7 @@ public class ObstacleInstantiator : MonoBehaviour
             }
 
             Vector3 position = new Vector3(PlatformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), PlatformLooping.platforms[0].transform.position.y + 1.5f, PlatformLooping.platformLength * (PlatformLooping.platforms.Length - 1.7f));
-            
+
             Instantiate(obstacle, position, new Quaternion(0f, 0f, 0f, 0f));
         }
     }
@@ -105,7 +105,7 @@ public class ObstacleInstantiator : MonoBehaviour
 
     IEnumerator CameraFOVAdjust(float startFOV, float endFOV)
     {
-        for (float t = 0;  playerCamera.fieldOfView != endFOV; t += Time.deltaTime)
+        for (float t = 0; playerCamera.fieldOfView != endFOV; t += Time.deltaTime)
         {
             playerCamera.fieldOfView = Mathf.SmoothStep(startFOV, endFOV, t);
             yield return null;

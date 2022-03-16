@@ -21,15 +21,15 @@ public class BuffAndDebuff : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Player");
-
+        player = GameObject.FindGameObjectWithTag("Player");
         playerAnim = player.GetComponent<Animator>();
-        objectAnim = transform.parent.GetComponent<Animator>();
-
-        obstacle = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
 
         if (isMoving())
             playerAnim.SetFloat("speed", PlatformLooping.speed);
+
+        objectAnim = transform.parent.GetComponent<Animator>();
+
+        obstacle = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
 
         switch (tag)
         {
@@ -39,9 +39,16 @@ public class BuffAndDebuff : MonoBehaviour
             case "Basic Debuff":
                 speedAdjustment = PlatformLooping.speed / -5;
                 break;
-            default:
-                break;
         }
+    }
+
+    public void SwapPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerAnim = player.GetComponent<Animator>();
+
+        if (isMoving())
+            playerAnim.SetFloat("speed", PlatformLooping.speed);
     }
 
     void FixedUpdate()

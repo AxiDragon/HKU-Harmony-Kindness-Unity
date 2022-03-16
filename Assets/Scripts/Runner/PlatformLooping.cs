@@ -18,12 +18,12 @@ public class PlatformLooping : MonoBehaviour
     [Tooltip("Highest speed the player can reach. (Mainly to secure that the player will not phase through collisions)")]
     public float maxSpeed;
 
-    void Awake()
+    void Start()
     {
         speed = startSpeed;
         baseSpeed = speed;
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("Players");
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         platformLength = (platforms[0].GetComponent<Collider>().bounds.size).z;
 

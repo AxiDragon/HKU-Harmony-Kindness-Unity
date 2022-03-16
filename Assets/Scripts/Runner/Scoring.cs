@@ -21,7 +21,7 @@ public class Scoring : MonoBehaviour
         scoreText.text = score.ToString();
 
         //debug
-        //AreaTalk.gamePhase = 1;
+        AreaTalk.gamePhase = 1;
     }
 
     void Update()

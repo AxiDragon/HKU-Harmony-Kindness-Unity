@@ -5,24 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class RunnerMovement : MonoBehaviour
 {
-    Animator playerAnim;
-    Rigidbody rb;
+    [HideInInspector]
+    public static Rigidbody rb;
     [Tooltip("Force multiplier applied to the player cube.")]
     public float extraForce;
-    [Tooltip("Force multiplier applied to the player cube for jumps (multiplied by extraForce).")]
-    public float jumpForce;
+    [Tooltip("Force divider applied to the player cube for jumps (multiplied by extraForce).")]
+    public float jumpDamping;
     public float groundDistance;
     bool isGrounded = true;
 
     Transform groundCheck;
     LayerMask groundMask;
 
-    void Awake()
+    void Start()
     {
         groundCheck = transform.Find("GroundCheck");
         groundMask = LayerMask.GetMask("Ground");
-        playerAnim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();    
+
+        rb = GetComponent<Rigidbody>();
+    }
+
+    public void Reboot()
+    {
+        groundCheck = transform.Find("GroundCheck");
+        groundMask = LayerMask.GetMask("Ground");
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -30,7 +38,7 @@ public class RunnerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && Input.GetKeyDown("space"))
-            rb.AddForce(Vector3.up * extraForce * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * extraForce / jumpDamping, ForceMode.Impulse);
 
         float horizontal = Input.GetAxis("Horizontal");
 
@@ -41,10 +49,5 @@ public class RunnerMovement : MonoBehaviour
 
         if (transform.position.y < -1)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    void FixedUpdate()
-    {
-        rb.AddForce(Physics.gravity * rb.mass * 3);
     }
 }
