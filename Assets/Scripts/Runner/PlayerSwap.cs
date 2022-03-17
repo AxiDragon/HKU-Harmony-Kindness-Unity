@@ -26,10 +26,7 @@ public class PlayerSwap : MonoBehaviour
         for (int i = 0; i < runners.Length; i++)
         {
             players.Add(runners[i].gameObject);
-            print((currentPos[i] + 1) % currentPos.Count);
         }
-
-
         //this is really gross but I had to do it I'm sorry
 
         players.Sort((i, j) => i.name.CompareTo(j.name)); //sorts player list alphabetically. Hooray!
@@ -39,19 +36,13 @@ public class PlayerSwap : MonoBehaviour
             player.GetComponent<RunnerMovement>().enabled = player == players[currentPlayer];
             player.tag = (player == players[currentPlayer]) ? "Player" : "Untagged";
 
-            startTransforms.Add(player.transform.position); //sorts in art, des, dev (alphabetically)
+            startTransforms.Add(player.transform.localPosition); //sorts in art, des, dev (alphabetically)
         }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-            ChangePlayer();
     }
 
     public static void ChangePlayer()
     {
-        startTransforms[0] = players[currentPlayer].transform.position;
+        startTransforms[0] = players[currentPlayer].transform.localPosition;
 
         currentPlayer++;
         currentPlayer %= players.Count;
@@ -67,7 +58,7 @@ public class PlayerSwap : MonoBehaviour
         }
 
         instance.StartCoroutine(ChangePosition());
-        runners[currentPlayer].Reboot();
+        runners[currentPlayer].Start();
 
         BuffAndDebuff[] buffAndDebuff = FindObjectsOfType<BuffAndDebuff>();
 
@@ -88,17 +79,21 @@ public class PlayerSwap : MonoBehaviour
 
     static IEnumerator ChangePosition()
     {
+        //changePos works, there's just wrong positions for some reason
         for (float time = 0f; time < 0.5f; time += Time.deltaTime)
         {
             for (int i = 0; i < players.Count; i++)
-                players[i].transform.position = Vector3.Slerp(startTransforms[currentPos[i]], 
-                    startTransforms[currentPos[(currentPos[i] + 1) % currentPos.Count]], time * 2f);
+                players[i].transform.localPosition = Vector3.Slerp(startTransforms[currentPos[i]], 
+                    startTransforms[currentPos[(i + 1) % currentPos.Count]], time * 2f);
 
             yield return new WaitForFixedUpdate();
         }
 
         for (int i = 0; i < currentPos.Count; i++)
+        {
             currentPos[i] = (currentPos[i] + 1) % currentPos.Count;
+            print(currentPos[i]);
+        }
     }
 
     private void OnDestroy()

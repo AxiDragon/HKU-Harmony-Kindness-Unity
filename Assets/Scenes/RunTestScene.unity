@@ -299,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8642645408204596000, guid: bc91e5f73cb3e5544b189e25e6c7b797, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 8642645408204596000, guid: bc91e5f73cb3e5544b189e25e6c7b797, type: 3}
       propertyPath: m_LocalPosition.z
@@ -934,7 +934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187542696977436057, guid: b688a6b9aea886e48b50a89db490410e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 8187542696977436057, guid: b688a6b9aea886e48b50a89db490410e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1469,7 +1469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3906341638055520105, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 3906341638055520105, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1507,6 +1507,10 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 0.0005
       objectReference: {fileID: 0}
+    - target: {fileID: 3906341638055520108, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 43f9a856f8a9be040acf2662fe32d0e7, type: 3}
     - target: {fileID: 3906341638055520117, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: m_Name
       value: PlayerArt

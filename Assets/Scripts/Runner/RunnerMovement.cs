@@ -13,22 +13,16 @@ public class RunnerMovement : MonoBehaviour
     public float jumpDamping;
     public float groundDistance;
     bool isGrounded = true;
+    Animator playerAnim;
 
     Transform groundCheck;
     LayerMask groundMask;
 
-    void Start()
+    public void Start()
     {
         groundCheck = transform.Find("GroundCheck");
         groundMask = LayerMask.GetMask("Ground");
-
-        rb = GetComponent<Rigidbody>();
-    }
-
-    public void Reboot()
-    {
-        groundCheck = transform.Find("GroundCheck");
-        groundMask = LayerMask.GetMask("Ground");
+        playerAnim = GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody>();
     }
@@ -37,8 +31,19 @@ public class RunnerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded && Input.GetKeyDown("space"))
-            rb.AddForce(Vector3.up * extraForce / jumpDamping, ForceMode.Impulse);
+        if (isGrounded)
+        {
+            playerAnim.SetBool("isGrounded", true);
+
+            if (Input.GetKeyDown("space"))
+            {
+                playerAnim.SetTrigger("jump");
+                rb.AddForce(Vector3.up * extraForce / jumpDamping, ForceMode.Impulse);
+            }
+        }
+        else
+            playerAnim.SetBool("isGrounded", false);
+            
 
         float horizontal = Input.GetAxis("Horizontal");
 
