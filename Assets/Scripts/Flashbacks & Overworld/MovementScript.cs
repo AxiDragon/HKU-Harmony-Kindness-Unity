@@ -31,7 +31,7 @@ public class MovementScript : MonoBehaviour
 
         if ((moveVector != Vector3.zero) && !talking)
         {
-            playerAnim.SetBool("isRunning", true);
+            playerAnim.SetBool("isMoving", true);
             playerAnim.SetFloat("speed", Vector3.Magnitude(moveVector) * animSpeed);
 
             rb.MovePosition(rb.transform.position + moveVector);
@@ -41,7 +41,10 @@ public class MovementScript : MonoBehaviour
                                                           rotationSpeed * Time.deltaTime);
         }
         else
-            playerAnim.SetBool("isRunning", false);
+        {
+            playerAnim.SetBool("isMoving", false);
+            playerAnim.SetFloat("speed", 0f);
+        }
 
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
     }

@@ -29,7 +29,7 @@ public class BuffAndDebuff : MonoBehaviour
 
         objectAnim = transform.parent.GetComponent<Animator>();
 
-        obstacle = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
+        obstacle = FindObjectOfType<ObstacleInstantiator>();
 
         switch (tag)
         {
@@ -65,26 +65,7 @@ public class BuffAndDebuff : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
-        {
-            if (speedAdjustment >= 0)
-            {
-                if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitBuff"))
-                    playerAnim.SetTrigger("hitBuff");
-
-                obstacle.StartBuffBoostMove();
-            }
-            else
-            {
-                if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitDebuff"))
-                    playerAnim.SetTrigger("hitDebuff");
-
-                obstacle.StartCameraShake();
-            }
-
-            obstacle.StartFOVAdjust(PlatformLooping.speed, speedAdjustment);
-            PlatformLooping.speed += speedAdjustment;
-            StartCoroutine(DestroyAnimation());
-        }
+            PickedUpByPlayer();
     }
 
     IEnumerator DestroyAnimation()
@@ -102,6 +83,11 @@ public class BuffAndDebuff : MonoBehaviour
     }
 
     public void TriggerSliceable()
+    {
+        PickedUpByPlayer();
+    }
+
+    void PickedUpByPlayer()
     {
         if (speedAdjustment >= 0)
         {
@@ -123,6 +109,7 @@ public class BuffAndDebuff : MonoBehaviour
 
         obstacle.StartFOVAdjust(PlatformLooping.speed, speedAdjustment);
         PlatformLooping.speed += speedAdjustment;
+        PlatformLooping.UpdatePlayerSpeed();
         StartCoroutine(DestroyAnimation());
     }
 }

@@ -18,11 +18,24 @@ public class PlatformLooping : MonoBehaviour
     [Tooltip("Highest speed the player can reach. (Mainly to secure that the player will not phase through collisions)")]
     public float maxSpeed;
 
+    static Animator[] playerAnims;
+
+    static bool HasSpeed(Animator anim)
+    {
+        foreach (AnimatorControllerParameter parameter in anim.parameters)
+        {
+            if (parameter.name == "speed")
+                return true;
+        }
+        return false;
+    }
+
     void Start()
     {
         speed = startSpeed;
         baseSpeed = speed;
 
+        playerAnims = FindObjectsOfType<Animator>();
         player = GameObject.Find("Players");
         platforms = GameObject.FindGameObjectsWithTag("Platform");
         platformLength = (platforms[0].GetComponent<Collider>().bounds.size).z;
@@ -45,6 +58,15 @@ public class PlatformLooping : MonoBehaviour
 
         if (speed < lowestSpeed)
             GameOver();
+    }
+
+    public static void UpdatePlayerSpeed()
+    {
+        foreach (Animator anim in playerAnims)
+        {
+            if (HasSpeed(anim))
+                anim.SetFloat("speed", speed);
+        }
     }
 
     public void LoopPlatforms(GameObject loopedPlatform)

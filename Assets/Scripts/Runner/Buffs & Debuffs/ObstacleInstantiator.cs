@@ -31,8 +31,8 @@ public class ObstacleInstantiator : MonoBehaviour
         nextSpawnTime = Time.time;
         limitTime += Time.time;
 
-        cameraParent = FindObjectOfType<Camera>().transform.parent.gameObject;
-        playerCamera = FindObjectOfType<Camera>().GetComponent<Camera>();
+        playerCamera = FindObjectOfType<Camera>();
+        cameraParent = playerCamera.transform.parent.gameObject;
 
         originalPos = cameraParent.transform.position;
 
@@ -68,15 +68,6 @@ public class ObstacleInstantiator : MonoBehaviour
         }
     }
 
-    public void StartCameraShake()
-    {
-        StartCoroutine(CameraShake());
-    }
-
-    public void StartBuffBoostMove()
-    {
-        StartCoroutine(BuffBoostMove());
-    }
 
     public void StartFOVAdjust(float currentSpeed, float speedAdjust)
     {
@@ -127,5 +118,14 @@ public class ObstacleInstantiator : MonoBehaviour
             cameraParent.transform.localPosition = Vector3.Slerp(movePos, originalPos, t);
             yield return null;
         }
+    }
+    public void StartCameraShake()
+    {
+        StartCoroutine(CameraShake());
+    }
+
+    public void StartBuffBoostMove()
+    {
+        StartCoroutine(BuffBoostMove());
     }
 }

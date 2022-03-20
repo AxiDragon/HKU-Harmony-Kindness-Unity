@@ -66,6 +66,7 @@ public class PlayerSwap : MonoBehaviour
 
     public static void ChangePlayer()
     {
+        startTransforms[0] = players[currentPlayer].transform.position;
         currentPlayer++;
         currentPlayer %= players.Count;
 
@@ -75,6 +76,8 @@ public class PlayerSwap : MonoBehaviour
             player.tag = (player == players[currentPlayer]) ? "Player" : "Untagged";
             if (player.tag == "Untagged")
                 instance.StartCoroutine(ResetRotation(player));
+
+            player.GetComponent<Animator>().SetBool("isGrounded", true);
         }
 
         instance.StartCoroutine(ChangePosition());
@@ -97,8 +100,7 @@ public class PlayerSwap : MonoBehaviour
     }
 
     static IEnumerator ChangePosition()
-    {
-        //startTransforms[0] = players[currentPlayer].transform.position; 
+    {        
         //changePos works, there's just wrong positions for some reason
         for (float time = 0f; time < 0.5f; time += Time.deltaTime)
         {
