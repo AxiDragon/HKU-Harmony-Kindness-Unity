@@ -41,8 +41,7 @@ public class PlatformLooping : MonoBehaviour
         foreach (GameObject platform in platforms)
             platform.transform.position += Vector3.back * speed;
 
-        if (speed > maxSpeed)
-            speed = maxSpeed;
+        speed = Mathf.Min(speed, maxSpeed);
 
         if (speed < lowestSpeed)
             GameOver();

@@ -8,7 +8,7 @@ public class PlatformTrigger : MonoBehaviour
 
     void Start()
     {
-        platformLooping = FindObjectOfType<PlatformLooping>().GetComponent<PlatformLooping>();
+        platformLooping = FindObjectOfType<PlatformLooping>();
     }
 
     void OnTriggerEnter(Collider other)

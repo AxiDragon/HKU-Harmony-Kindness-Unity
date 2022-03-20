@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WhiteFlash : MonoBehaviour
 {
@@ -23,6 +24,23 @@ public class WhiteFlash : MonoBehaviour
             flash.alpha = Mathf.SmoothStep(startAlpha, endAlpha, (Time.time - startTime) / 2);
 
             yield return new WaitForFixedUpdate();
+        }
+
+        if (!flashIn)
+        {
+            switch (AreaTalk.gamePhase)
+            {
+                case 0:
+                    LoadingScreen.sceneNumber = 2;
+                    SceneManager.LoadScene("LoadingScreen");
+                    AreaTalk.gamePhase++;
+                    break;
+                case 1:
+                    LoadingScreen.sceneNumber = 2;
+                    SceneManager.LoadScene("LoadingScreen");
+                    AreaTalk.gamePhase++;
+                    break;
+            }
         }
     }
 }
