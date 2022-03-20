@@ -5,28 +5,24 @@ using UnityEngine;
 public class SliceableBuffAndDebuff : MonoBehaviour
 {
     BuffAndDebuff buffAndDebuff;
-    GameObject sliceableObject;
-    Camera mainCamera;
+
+    int triggersHit = 0;
 
     void Start()
     {
-        if (tag == "Basic Buff")
-            transform.root.position += Vector3.up * 12f;
+        transform.root.position += transform.root.position.x > 0f ? Vector3.left * 5f : Vector3.right * 5f;
 
         buffAndDebuff = GetComponent<BuffAndDebuff>();
-        mainCamera = FindObjectOfType<Camera>().GetComponent<Camera>();
-        sliceableObject = transform.parent.gameObject;
     }
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        if (!Input.GetKey("mouse 0"))
-            return;
-
-        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(cameraRay, out RaycastHit hit, 1000f))
-            if (hit.collider.gameObject == sliceableObject)
+        if (other.tag == "Player")
+        {
+            triggersHit++;
+         
+            if (triggersHit == 2)
                 buffAndDebuff.TriggerSliceable();
+        }
     }
 }

@@ -89,9 +89,14 @@ public class BuffAndDebuff : MonoBehaviour
 
     IEnumerator DestroyAnimation()
     {
-        objectAnim.SetTrigger("pickedUp");
-        while (!objectAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
+        if (objectAnim != null)
+            objectAnim.SetTrigger("pickedUp");
+
+        if (objectAnim != null)
+        {
+            while (!objectAnim.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
             yield return null;
+        }
 
         Destroy(transform.root.gameObject);
     }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class RunnerMovement : MonoBehaviour
 {
     [HideInInspector]
-    public static Rigidbody rb;
+    public Rigidbody rb;
     [Tooltip("Force multiplier applied to the player cube.")]
     public float extraForce;
     [Tooltip("Force divider applied to the player cube for jumps (multiplied by extraForce).")]

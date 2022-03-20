@@ -11,9 +11,17 @@ public class PlayerSwap : MonoBehaviour
     static List<int> currentPos = new List<int>();
     static RunnerMovement[] runners;
     public static int currentPlayer = 0;
+    float currentTime, randomSwitchTime;
+
+    [Tooltip("Minimum time a player should be able to play the game.")]
+    public float minimumTime;
 
     void Awake()
-    { 
+    {
+        currentTime = 0f;
+        randomSwitchTime = UnityEngine.Random.Range(0f, 1f);
+        minimumTime += Time.time;
+
         currentPlayer = 0;
 
         instance = this;
@@ -22,12 +30,10 @@ public class PlayerSwap : MonoBehaviour
         currentPos.Add(0);
         currentPos.Add(2);
         currentPos.Add(1);
+        //this is really gross but I had to do it I'm sorry
 
         for (int i = 0; i < runners.Length; i++)
-        {
             players.Add(runners[i].gameObject);
-        }
-        //this is really gross but I had to do it I'm sorry
 
         players.Sort((i, j) => i.name.CompareTo(j.name)); //sorts player list alphabetically. Hooray!
 
@@ -40,10 +46,25 @@ public class PlayerSwap : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        RandomTimer();
+    }
+
+    void RandomTimer()
+    {
+        currentTime += Time.deltaTime;
+
+        if ((randomSwitchTime + Mathf.Max(minimumTime - Time.time, 0f)) < (1f - (1f / (1f + currentTime / 10f))))
+        {
+            ChangePlayer();
+            currentTime = 0f;
+            randomSwitchTime = UnityEngine.Random.Range(0f, 1f);
+        }
+    }
+
     public static void ChangePlayer()
     {
-        startTransforms[0] = players[currentPlayer].transform.localPosition;
-
         currentPlayer++;
         currentPlayer %= players.Count;
 
@@ -52,13 +73,10 @@ public class PlayerSwap : MonoBehaviour
             player.GetComponent<RunnerMovement>().enabled = player == players[currentPlayer];
             player.tag = (player == players[currentPlayer]) ? "Player" : "Untagged";
             if (player.tag == "Untagged")
-            {
                 instance.StartCoroutine(ResetRotation(player));
-            }
         }
 
         instance.StartCoroutine(ChangePosition());
-        runners[currentPlayer].Start();
 
         BuffAndDebuff[] buffAndDebuff = FindObjectsOfType<BuffAndDebuff>();
 
@@ -79,21 +97,19 @@ public class PlayerSwap : MonoBehaviour
 
     static IEnumerator ChangePosition()
     {
+        //startTransforms[0] = players[currentPlayer].transform.position; 
         //changePos works, there's just wrong positions for some reason
         for (float time = 0f; time < 0.5f; time += Time.deltaTime)
         {
             for (int i = 0; i < players.Count; i++)
-                players[i].transform.localPosition = Vector3.Slerp(startTransforms[currentPos[i]], 
-                    startTransforms[currentPos[(i + 1) % currentPos.Count]], time * 2f);
+                players[i].transform.position = Vector3.Lerp(startTransforms[currentPos[i]],
+                    startTransforms[(currentPos[i] + 1) % currentPos.Count], time * 2f);
 
             yield return new WaitForFixedUpdate();
         }
 
         for (int i = 0; i < currentPos.Count; i++)
-        {
             currentPos[i] = (currentPos[i] + 1) % currentPos.Count;
-            print(currentPos[i]);
-        }
     }
 
     private void OnDestroy()

@@ -10,6 +10,8 @@ public class AreaTalk : MonoBehaviour
     public static int gamePhase;
     bool inRange = false;
     bool talking = false;
+    [Tooltip("Will automatically start talking to the player if nearby")]
+    public bool autoTrigger;
 
     void Awake()
     {
@@ -42,6 +44,7 @@ public class AreaTalk : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        print("yes");
         if (other.tag == "Player")
             inRange = true;
     }

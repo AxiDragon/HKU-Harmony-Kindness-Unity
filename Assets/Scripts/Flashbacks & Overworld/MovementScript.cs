@@ -8,10 +8,15 @@ public class MovementScript : MonoBehaviour
     GameObject mainCamera;
     Vector3 moveVector;
     public float speed;
+    public float rotationSpeed;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        if (GetComponent<Rigidbody>())
+            rb = GetComponent<Rigidbody>();
+        else
+            rb = GetComponentInChildren<Rigidbody>();
+
         mainCamera = FindObjectOfType<Camera>().gameObject;
     }
 
@@ -22,5 +27,13 @@ public class MovementScript : MonoBehaviour
 
         moveVector = mainCamera.transform.rotation * new Vector3(horizontal, 0f, vertical) * Time.deltaTime * speed;
         rb.MovePosition(rb.transform.position + moveVector);
+
+        if (moveVector != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveVector, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
     }
 }

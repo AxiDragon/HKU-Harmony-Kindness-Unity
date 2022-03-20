@@ -19,7 +19,7 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {     
             currentDialog++;
             ChangeText();
@@ -27,7 +27,7 @@ public class Dialogue : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            currentDialog = Mathf.Max(currentDialog - 1, 0);
+            currentDialog = Mathf.Max(--currentDialog, 0);
             ChangeText();
         }
 

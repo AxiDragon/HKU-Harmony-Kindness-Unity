@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/RunTestScene.unity
     guid: 9056d3e1843752342aba9d805f2dd43e
   - enabled: 1
-    path: Assets/Scenes/ConflictScene_1.unity
+    path: Assets/Scenes/ConflictScene_Bullying.unity
     guid: a3d0a8d966111834a8212bb526bab8d9
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
