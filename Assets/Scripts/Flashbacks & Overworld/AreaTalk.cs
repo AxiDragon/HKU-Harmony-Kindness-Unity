@@ -63,7 +63,7 @@ public class AreaTalk : MonoBehaviour
         if (!dialogueGameObject.activeInHierarchy)
             return;
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
         {
             currentDialog++;
             ChangeText();
@@ -87,7 +87,7 @@ public class AreaTalk : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Q))
         {
             currentDialog = Mathf.Max(--currentDialog, 0);
             ChangeText();

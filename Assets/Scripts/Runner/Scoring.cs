@@ -31,17 +31,17 @@ public class Scoring : MonoBehaviour
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
 
-        switch (AreaTalk.gamePhase)
-        {
-            case 2:
-                if ((score > 50) && !cutsceneTriggered)
-                {
-                    cutsceneTriggered = true;
-                    LoadingScreen.sceneNumber = 3;
-                    StartCoroutine(StartFlashback());
-                }
-                break;
-        }
+        //switch (AreaTalk.gamePhase)
+        //{
+        //    case 2:
+        //        if ((score > 50) && !cutsceneTriggered)
+        //        {
+        //            cutsceneTriggered = true;
+        //            LoadingScreen.sceneNumber = 3;
+        //            StartCoroutine(StartFlashback());
+        //        }
+        //        break;
+        //}
     }
 
     public IEnumerator StartFlashback()
@@ -54,17 +54,7 @@ public class Scoring : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        switch (AreaTalk.gamePhase)
-        {
-            case 0:
-                LoadingScreen.sceneNumber = 3;
-                break;
-            case 1:
-                LoadingScreen.sceneNumber = 4;
-                break;
-            case 2:
-                break;
-        }
+        LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
         SceneManager.LoadScene("LoadingScreen");
     }
 }

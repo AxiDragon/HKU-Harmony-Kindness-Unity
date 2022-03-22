@@ -45,7 +45,7 @@ public class PlayerSwap : MonoBehaviour
         }
 
 
-        if (AreaTalk.gamePhase != 1)
+        if (AreaTalk.gamePhase < 1)
             foreach (GameObject donkeyHead in GameObject.FindGameObjectsWithTag("Donkey Head"))
                 donkeyHead.SetActive(false);
     }

@@ -61,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3906341638055520107, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: jumpDamping
-      value: 750
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 3906341638055520117, guid: b06b56e5d828fad45842b966f899d05b, type: 3}
       propertyPath: m_Name
