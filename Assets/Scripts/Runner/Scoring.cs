@@ -10,14 +10,15 @@ public class Scoring : MonoBehaviour
     Text scoreText;
     ObstacleInstantiator obstacleInstantiator;
 
-    float score = 0;
+    [System.NonSerialized]
+    public float score = 0;
     bool cutsceneTriggered = false;
 
     void Awake()
     {
-        whiteFlash = FindObjectOfType<CanvasGroup>().GetComponent<CanvasGroup>();
-        obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
-        scoreText = FindObjectOfType<Text>().GetComponent<Text>();
+        whiteFlash = FindObjectOfType<CanvasGroup>();
+        obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>();
+        scoreText = FindObjectOfType<Text>();
         scoreText.text = score.ToString();
 
         //debug
@@ -32,7 +33,7 @@ public class Scoring : MonoBehaviour
 
         switch (AreaTalk.gamePhase)
         {
-            case 1:
+            case 2:
                 if ((score > 50) && !cutsceneTriggered)
                 {
                     cutsceneTriggered = true;
@@ -43,13 +44,26 @@ public class Scoring : MonoBehaviour
         }
     }
 
-    IEnumerator StartFlashback()
+    public IEnumerator StartFlashback()
     {
+        cutsceneTriggered = true;
         while (whiteFlash.alpha < 1)
         {
 
             whiteFlash.alpha += Time.deltaTime / 2;
             yield return new WaitForEndOfFrame();
+        }
+
+        switch (AreaTalk.gamePhase)
+        {
+            case 0:
+                LoadingScreen.sceneNumber = 3;
+                break;
+            case 1:
+                LoadingScreen.sceneNumber = 4;
+                break;
+            case 2:
+                break;
         }
         SceneManager.LoadScene("LoadingScreen");
     }

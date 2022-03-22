@@ -21,5 +21,11 @@ public class DebugScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
             PlayerSwap.ChangePlayer();
+
+        if (Input.GetKeyDown(KeyCode.F))
+            FindObjectOfType<ObstacleInstantiator>().limitTime = 1f;
+
+        if (Input.GetKeyDown(KeyCode.C))
+            FindObjectOfType<Scoring>().score += 250f;
     }
 }
