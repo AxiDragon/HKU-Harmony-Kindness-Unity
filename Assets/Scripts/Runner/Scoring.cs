@@ -10,14 +10,15 @@ public class Scoring : MonoBehaviour
     Text scoreText;
     ObstacleInstantiator obstacleInstantiator;
 
-    float score = 0;
+    [System.NonSerialized]
+    public float score = 0;
     bool cutsceneTriggered = false;
 
     void Awake()
     {
-        whiteFlash = FindObjectOfType<CanvasGroup>().GetComponent<CanvasGroup>();
-        obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
-        scoreText = FindObjectOfType<Text>().GetComponent<Text>();
+        whiteFlash = FindObjectOfType<CanvasGroup>();
+        obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>();
+        scoreText = FindObjectOfType<Text>();
         scoreText.text = score.ToString();
 
         //debug
@@ -30,27 +31,30 @@ public class Scoring : MonoBehaviour
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
 
-        switch (AreaTalk.gamePhase)
-        {
-            case 1:
-                if ((score > 50) && !cutsceneTriggered)
-                {
-                    cutsceneTriggered = true;
-                    LoadingScreen.sceneNumber = 3;
-                    StartCoroutine(StartFlashback());
-                }
-                break;
-        }
+        //switch (AreaTalk.gamePhase)
+        //{
+        //    case 2:
+        //        if ((score > 50) && !cutsceneTriggered)
+        //        {
+        //            cutsceneTriggered = true;
+        //            LoadingScreen.sceneNumber = 3;
+        //            StartCoroutine(StartFlashback());
+        //        }
+        //        break;
+        //}
     }
 
-    IEnumerator StartFlashback()
+    public IEnumerator StartFlashback()
     {
+        cutsceneTriggered = true;
         while (whiteFlash.alpha < 1)
         {
 
             whiteFlash.alpha += Time.deltaTime / 2;
             yield return new WaitForEndOfFrame();
         }
+
+        LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
         SceneManager.LoadScene("LoadingScreen");
     }
 }

@@ -69,13 +69,7 @@ public class PlatformLooping : MonoBehaviour
         }
     }
 
-    public void LoopPlatforms(GameObject loopedPlatform)
-    {
-        loopedPlatform.transform.position += new Vector3(0, 0, platformLength * platforms.Length);
-    }
+    public void LoopPlatforms(GameObject loopedPlatform) => loopedPlatform.transform.position += new Vector3(0, 0, platformLength * platforms.Length);
 
-    void GameOver()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    void GameOver() => StartCoroutine(FindObjectOfType<Scoring>().StartFlashback());
 }

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        LoadingScreen.sceneNumber = 1;
+        LoadingScreen.sceneNumber = 2;
         SceneManager.LoadScene("LoadingScreen");
     }
 
