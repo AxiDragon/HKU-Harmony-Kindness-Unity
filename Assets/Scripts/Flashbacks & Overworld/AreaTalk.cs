@@ -8,7 +8,7 @@ public class AreaTalk : MonoBehaviour
 {
     GameObject dialogueGameObject;
     [Tooltip("Executes different events based on its number. Check AreaTalk.cs!")]
-    public static int gamePhase;
+    public static int gamePhase = 0;
     bool inRange, talking, endedDialogue = false;
     [Tooltip("Will automatically start talking to the player if nearby")]
     public bool autoTrigger;
@@ -109,6 +109,9 @@ public class AreaTalk : MonoBehaviour
         switch (tag)
         {
             case "Bully":
+                FindObjectOfType<Animation>().Play();
+                break;
+            case "Confidential Counsellor":
                 FindObjectOfType<Animation>().Play();
                 break;
         }

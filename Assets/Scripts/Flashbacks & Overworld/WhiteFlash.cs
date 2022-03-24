@@ -30,12 +30,7 @@ public class WhiteFlash : MonoBehaviour
         {
             switch (AreaTalk.gamePhase)
             {
-                case 0:
-                    LoadingScreen.sceneNumber = 2;
-                    SceneManager.LoadScene("LoadingScreen");
-                    AreaTalk.gamePhase++;
-                    break;
-                case 1:
+                default:
                     LoadingScreen.sceneNumber = 2;
                     SceneManager.LoadScene("LoadingScreen");
                     AreaTalk.gamePhase++;

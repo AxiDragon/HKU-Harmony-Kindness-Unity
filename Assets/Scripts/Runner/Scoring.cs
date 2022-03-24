@@ -8,16 +8,14 @@ public class Scoring : MonoBehaviour
 {
     CanvasGroup whiteFlash;
     Text scoreText;
-    ObstacleInstantiator obstacleInstantiator;
+    float difficulty = 25f;
 
     [System.NonSerialized]
     public float score = 0;
-    bool cutsceneTriggered = false;
 
     void Awake()
     {
         whiteFlash = FindObjectOfType<CanvasGroup>();
-        obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>();
         scoreText = FindObjectOfType<Text>();
         scoreText.text = score.ToString();
 
@@ -30,31 +28,21 @@ public class Scoring : MonoBehaviour
         score += Time.deltaTime * PlatformLooping.speed;
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
-
-        //switch (AreaTalk.gamePhase)
-        //{
-        //    case 2:
-        //        if ((score > 50) && !cutsceneTriggered)
-        //        {
-        //            cutsceneTriggered = true;
-        //            LoadingScreen.sceneNumber = 3;
-        //            StartCoroutine(StartFlashback());
-        //        }
-        //        break;
-        //}
     }
 
     public IEnumerator StartFlashback()
     {
-        cutsceneTriggered = true;
         while (whiteFlash.alpha < 1)
         {
-
             whiteFlash.alpha += Time.deltaTime / 2;
             yield return new WaitForEndOfFrame();
         }
 
-        LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
+        if (score > (AreaTalk.gamePhase + 1f) * difficulty)
+            LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
+        else
+            LoadingScreen.sceneNumber = SceneManager.sceneCountInBuildSettings - 1;
+
         SceneManager.LoadScene("LoadingScreen");
     }
 }

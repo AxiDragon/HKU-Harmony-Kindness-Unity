@@ -11,7 +11,7 @@ public class RunnerMovement : MonoBehaviour
     public float extraForce;
     [Tooltip("Force divider applied to the player cube for jumps (multiplied by extraForce).")]
     public float jumpDamping;
-    public float groundDistance;
+    float groundDistance = 0.3f;
     bool isGrounded = true;
     Animator playerAnim;
 
@@ -49,7 +49,11 @@ public class RunnerMovement : MonoBehaviour
 
         rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime);
 
-        Vector3 rotation = Vector3.forward * (rb.velocity.x / 5);
+        if (isGrounded)
+            //rb.MovePosition(rb.transform.position + Vector3.right * horizontal / extraForce);
+            rb.transform.Translate(Vector3.right * horizontal / extraForce);
+
+        Vector3 rotation = Vector3.forward * rb.velocity.x;
         transform.rotation = Quaternion.Euler(rotation);
 
         if (transform.position.y < -1)

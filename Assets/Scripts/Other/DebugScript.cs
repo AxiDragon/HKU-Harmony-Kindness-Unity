@@ -16,16 +16,36 @@ public class DebugScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        string input = Input.inputString;
+        switch (input)
+        {
+            case "r":
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
+            case "e":
+                PlayerSwap.ChangePlayer();
+                break;
+            case "f":
+                FindObjectOfType<ObstacleInstantiator>().limitTime = 1f;
+                break;
+            case "c":
+                FindObjectOfType<Scoring>().score += 250f;
+                break;
+            case "q":
+                PlatformLooping.speed += 0.5f;
+                break;
+            case "z":
+                PlatformLooping.speed -= 0.5f;
+                break;
+        }
 
-        if (Input.GetKeyDown(KeyCode.E))
-            PlayerSwap.ChangePlayer();
+        //if (Input.GetKeyDown(KeyCode.R))
 
-        if (Input.GetKeyDown(KeyCode.F))
-            FindObjectOfType<ObstacleInstantiator>().limitTime = 1f;
+        //if (Input.GetKeyDown(KeyCode.E))
+        //    PlayerSwap.ChangePlayer();
 
-        if (Input.GetKeyDown(KeyCode.C))
-            FindObjectOfType<Scoring>().score += 250f;
+        //if (Input.GetKeyDown(KeyCode.F))
+
+        //if (Input.GetKeyDown(KeyCode.C))
     }
 }

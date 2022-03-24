@@ -98,7 +98,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   extraForce: 60
   jumpDamping: 1500
-  groundDistance: 0.4
 --- !u!95 &3906341638055520108
 Animator:
   serializedVersion: 3
@@ -125,7 +124,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906341638055520117}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c299fa1d535eb9f40a855ca38cc6875d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

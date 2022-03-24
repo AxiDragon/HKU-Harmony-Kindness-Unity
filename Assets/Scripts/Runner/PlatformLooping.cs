@@ -20,6 +20,8 @@ public class PlatformLooping : MonoBehaviour
 
     static Animator[] playerAnims;
 
+    bool gameOvered = false;
+
     static bool HasSpeed(Animator anim)
     {
         foreach (AnimatorControllerParameter parameter in anim.parameters)
@@ -56,8 +58,11 @@ public class PlatformLooping : MonoBehaviour
 
         speed = Mathf.Min(speed, maxSpeed);
 
-        if (speed < lowestSpeed)
+        if ((speed < lowestSpeed) && !gameOvered)
+        {
+            gameOvered = true;
             GameOver();
+        }
     }
 
     public static void UpdatePlayerSpeed()
