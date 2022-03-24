@@ -61,9 +61,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6088638491762366882, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
       propertyPath: m_Name
-      value: Debuff Bully
+      value: Debuff - Bully
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3778484749873188340, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
 --- !u!4 &5801162103657979222 stripped
 Transform:

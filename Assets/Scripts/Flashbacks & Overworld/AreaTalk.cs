@@ -63,7 +63,7 @@ public class AreaTalk : MonoBehaviour
         if (!dialogueGameObject.activeInHierarchy)
             return;
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
         {
             currentDialog++;
             ChangeText();
@@ -159,9 +159,7 @@ public class AreaTalk : MonoBehaviour
 
         while (transform.rotation != toRotation)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                                                          toRotation,
-                                                          15 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 15f * Time.deltaTime);
 
             transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
 

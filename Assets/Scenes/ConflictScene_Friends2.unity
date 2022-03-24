@@ -1985,7 +1985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.size
-      value: 21
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[0]
@@ -2005,68 +2005,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[4]
-      value: So!
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[5]
-      value: Unreasonable!
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[6]
       value: It's just nonsense!
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[7]
+      propertyPath: dialogue.Array.data[5]
       value: I'm definitely going to give them creepy sideglances whenever I see
         them.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[8]
+      propertyPath: dialogue.Array.data[6]
       value: How dare they do that to you.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[9]
+      propertyPath: dialogue.Array.data[7]
       value: Like!
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[10]
+      propertyPath: dialogue.Array.data[8]
       value: Seriously!
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[11]
+      propertyPath: dialogue.Array.data[9]
       value: ...
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[12]
+      propertyPath: dialogue.Array.data[10]
       value: Sorry.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[13]
+      propertyPath: dialogue.Array.data[11]
       value: Let's just pick ourselves up again.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[14]
+      propertyPath: dialogue.Array.data[12]
       value: We'll try once more.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[15]
+      propertyPath: dialogue.Array.data[13]
       value: After that, we're going to have to get outside help.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[16]
+      propertyPath: dialogue.Array.data[14]
       value: You know what?
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[17]
+      propertyPath: dialogue.Array.data[15]
       value: Just do that now.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[18]
+      propertyPath: dialogue.Array.data[16]
       value: Go send an email to a confidential counsellor.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[19]
+      propertyPath: dialogue.Array.data[17]
       value: This needs to end as soon as possible.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[18]
+      value: I don't want this controlling your life anymore.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[19]
+      value: I don't want this controlling your life anymore.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[20]
@@ -2454,19 +2454,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[0]
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[1]
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[2]
-      value: 17
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[3]
-      value: 19
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[4]

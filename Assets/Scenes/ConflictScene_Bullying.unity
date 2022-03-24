@@ -1903,67 +1903,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.size
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[0]
-      value: Oh, hey.
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[1]
       value: Hold on.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[2]
+      propertyPath: dialogue.Array.data[1]
       value: You're the guy the prof was talking about, no?
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[3]
+      propertyPath: dialogue.Array.data[2]
       value: When she mentioned that, well, 'one' person hadn't done anything.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[4]
+      propertyPath: dialogue.Array.data[3]
       value: That was you, wasn't it?
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[5]
+      propertyPath: dialogue.Array.data[4]
       value: You're always lost in your own mind and can't accomplish anything.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[6]
+      propertyPath: dialogue.Array.data[5]
       value: It's a pretty big project, and you're doing nothing.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[7]
+      propertyPath: dialogue.Array.data[6]
       value: Like, are you okay?
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[8]
-      value: Why the hell are you even here?
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[9]
+      propertyPath: dialogue.Array.data[7]
       value: It's honestly unbelievable you managed to get in here in the first place.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[10]
+      propertyPath: dialogue.Array.data[8]
       value: Ugh.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[11]
+      propertyPath: dialogue.Array.data[9]
       value: Sorry.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[12]
+      propertyPath: dialogue.Array.data[10]
       value: Just...
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[13]
+      propertyPath: dialogue.Array.data[11]
       value: Get the fuck out.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[14]
+      propertyPath: dialogue.Array.data[12]
       value: I don't want any of your shitty problems added onto mine.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[13]
+      value: You horse's ass.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[14]
+      value: You horse's ass.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[15]
@@ -1979,27 +1979,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: specialTriggers.Array.data[0]
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[0]
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[1]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[2]
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[3]
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[4]
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227026, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: m_RootOrder

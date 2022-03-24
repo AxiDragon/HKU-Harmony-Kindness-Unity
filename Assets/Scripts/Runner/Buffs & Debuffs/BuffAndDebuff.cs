@@ -37,10 +37,10 @@ public class BuffAndDebuff : MonoBehaviour
         switch (tag)
         {
             case "Basic Buff":
-                speedAdjustment = PlatformLooping.speed / 10;
+                speedAdjustment = (PlatformLooping.speed / 15f) * (3f / (AreaTalk.gamePhase + 3f));
                 break;
             case "Basic Debuff":
-                speedAdjustment = PlatformLooping.speed / -5;
+                speedAdjustment = (PlatformLooping.speed / -7.5f) * (3f / (AreaTalk.gamePhase + 3f));
                 break;
         }
     }

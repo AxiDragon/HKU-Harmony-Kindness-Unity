@@ -1975,6 +1975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Communicator Friend
       objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227022, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 84202917397227023, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1985,7 +1989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.size
-      value: 22
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[0]
@@ -2025,51 +2029,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[9]
-      value: If you are able to feel, that is.
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[10]
-      value: Are you able to feel?
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[11]
-      value: ...I'm... partially serious this time.
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[12]
       value: Like, I'm genuinely concerned.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[13]
+      propertyPath: dialogue.Array.data[10]
       value: It just feels like you've lost all your drive.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[14]
-      value: I...
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[15]
-      value: Uhm...
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[16]
-      value: I don't know...
-      objectReference: {fileID: 0}
-    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[17]
+      propertyPath: dialogue.Array.data[11]
       value: I'd like to help you, but I don't really know if I can help you?
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[18]
+      propertyPath: dialogue.Array.data[12]
       value: At least... just remember that I'm here for you.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[19]
+      propertyPath: dialogue.Array.data[13]
       value: You know what, you don't even have to remember.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
-      propertyPath: dialogue.Array.data[20]
+      propertyPath: dialogue.Array.data[14]
       value: Wanna work in the G&I space together, right now?
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[15]
+      value: Then I'm definitely there for you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[16]
+      value: Then I'm definitely there for you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[17]
+      value: Then I'm definitely there for you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[18]
+      value: Then I'm definitely there for you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[19]
+      value: Then I'm definitely there for you.
+      objectReference: {fileID: 0}
+    - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
+      propertyPath: dialogue.Array.data[20]
+      value: Then I'm definitely there for you.
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: dialogue.Array.data[21]
@@ -2461,7 +2465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[2]
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[3]
@@ -2469,7 +2473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227024, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: animationTriggers.Array.data[4]
-      value: 19
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 84202917397227026, guid: ed47686486cf38f4894b35ac8b4244a6, type: 3}
       propertyPath: m_RootOrder
