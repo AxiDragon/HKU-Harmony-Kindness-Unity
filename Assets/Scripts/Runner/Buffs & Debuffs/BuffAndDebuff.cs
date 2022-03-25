@@ -8,8 +8,9 @@ public class BuffAndDebuff : MonoBehaviour
     GameObject player;
     ObstacleInstantiator obstacle;
     float speedAdjustment;
+    bool hasOtherHitCondition;
 
-    bool isMoving()
+    bool IsMoving()
     {
         foreach (AnimatorControllerParameter parameter in playerAnim.parameters)
         {
@@ -24,8 +25,10 @@ public class BuffAndDebuff : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnim = player.GetComponent<Animator>();
 
-        if (isMoving())
+        if (IsMoving())
             playerAnim.SetFloat("speed", PlatformLooping.speed);
+
+        hasOtherHitCondition = GetComponent<SliceableBuffAndDebuff>();
 
         objectAnim = transform.parent.GetComponent<Animator>();
 
@@ -34,10 +37,10 @@ public class BuffAndDebuff : MonoBehaviour
         switch (tag)
         {
             case "Basic Buff":
-                speedAdjustment = PlatformLooping.speed / 10;
+                speedAdjustment = (PlatformLooping.speed / 15f) * (3f / (AreaTalk.gamePhase + 3f));
                 break;
             case "Basic Debuff":
-                speedAdjustment = PlatformLooping.speed / -5;
+                speedAdjustment = (PlatformLooping.speed / -7.5f) * (3f / (AreaTalk.gamePhase + 3f));
                 break;
         }
     }
@@ -47,24 +50,15 @@ public class BuffAndDebuff : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnim = player.GetComponent<Animator>();
 
-        if (isMoving())
+        if (IsMoving())
             playerAnim.SetFloat("speed", PlatformLooping.speed);
     }
 
-    void FixedUpdate()
-    {
-        transform.root.position += Vector3.back * PlatformLooping.speed;
-
-        if (player.transform.position.z > transform.root.position.z + 10f)
-            if (gameObject.name.Contains("Slice") && speedAdjustment < 0)
-                TriggerSliceable();
-            else
-                Destroy(transform.root.gameObject);
-    }
+    void FixedUpdate() => transform.root.position += Vector3.back * PlatformLooping.speed * Time.fixedDeltaTime * 60f;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !hasOtherHitCondition)
             PickedUpByPlayer();
     }
 
@@ -82,10 +76,7 @@ public class BuffAndDebuff : MonoBehaviour
         Destroy(transform.root.gameObject);
     }
 
-    public void TriggerSliceable()
-    {
-        PickedUpByPlayer();
-    }
+    public void TriggerSliceable() => PickedUpByPlayer();
 
     void PickedUpByPlayer()
     {

@@ -6,7 +6,10 @@ public class SliceableBuffAndDebuff : MonoBehaviour
 {
     BuffAndDebuff buffAndDebuff;
 
-    int triggersHit = 0;
+    int requiredSliceScore = 20;
+    int sliceScore = 0;
+    bool slicing = false;
+
 
     void Start()
     {
@@ -15,14 +18,23 @@ public class SliceableBuffAndDebuff : MonoBehaviour
         buffAndDebuff = GetComponent<BuffAndDebuff>();
     }
 
+    void FixedUpdate()
+    {
+        if (slicing)
+            sliceScore++;
+
+        if (sliceScore > requiredSliceScore / PlatformLooping.speed)
+            buffAndDebuff.TriggerSliceable();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
-        {
-            triggersHit++;
-         
-            if (triggersHit == 2)
-                buffAndDebuff.TriggerSliceable();
-        }
+            slicing = true;
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+            slicing = false;
     }
 }

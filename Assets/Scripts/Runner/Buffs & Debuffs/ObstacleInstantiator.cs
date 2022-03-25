@@ -9,6 +9,8 @@ public class ObstacleInstantiator : MonoBehaviour
     [Tooltip("Put debuff prefabs here.")]
     public GameObject[] debuffs;
 
+    Animator[] animators;
+
     float platformWidth;
 
     GameObject cameraParent;
@@ -21,15 +23,17 @@ public class ObstacleInstantiator : MonoBehaviour
 
     [Tooltip("Approximation of how long it should take to spawn in another obstacle.")]
     public float spawnCooldown = 2f;
-    float nextSpawnTime = 0;
+    float nextSpawnTime, startingTime;
+    float difficulty = 0.5f;
 
     [Tooltip("Approximation of how long it should take to nearly guarantee only negative obstacles")]
     public float limitTime = 180f;
 
     void Start()
     {
-        nextSpawnTime = Time.time;
+        animators = FindObjectsOfType<Animator>();
         limitTime += Time.time;
+        nextSpawnTime = startingTime = Time.time;
 
         playerCamera = FindObjectOfType<Camera>();
         cameraParent = playerCamera.transform.parent.gameObject;
@@ -48,21 +52,20 @@ public class ObstacleInstantiator : MonoBehaviour
         {
             spawned++;
 
-            nextSpawnTime += spawnCooldown * Random.Range(0.1f, 2f) / PlatformLooping.speed / (3 - (3 / (Time.time + 3)));
+            nextSpawnTime += ((spawnCooldown * Random.Range(0.1f, 2f) / Mathf.Max(Mathf.Sqrt((Time.time - startingTime) / 4f),
+                1f) / PlatformLooping.speed) - ((Time.time - startingTime) / limitTime)) * (difficulty / (AreaTalk.gamePhase + difficulty));
 
             float obstacleRandomizer = Random.Range(0f, 2f);
             GameObject obstacle;
 
-            if (obstacleRandomizer > (2 * Time.time / limitTime))
-            {
+            if (obstacleRandomizer > (2 * (Time.time - startingTime) / limitTime))
                 obstacle = buffs[Random.Range(0, buffs.Length)];
-            }
             else
-            {
                 obstacle = debuffs[Random.Range(0, debuffs.Length)];
-            }
 
-            Vector3 position = new Vector3(PlatformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), PlatformLooping.platforms[0].transform.position.y + 1.5f, PlatformLooping.platformLength * (PlatformLooping.platforms.Length - 1.7f));
+            Vector3 position = new Vector3(PlatformLooping.platforms[0].transform.position.x + Random.Range(platformWidth * -0.5f, platformWidth * 0.5f), 
+                PlatformLooping.platforms[0].transform.position.y + 1.5f, 
+                PlatformLooping.platformLength * (PlatformLooping.platforms.Length - 1.7f));
 
             Instantiate(obstacle, position, new Quaternion(0f, 0f, 0f, 0f));
         }
@@ -79,15 +82,19 @@ public class ObstacleInstantiator : MonoBehaviour
 
     IEnumerator CameraShake()
     {
-        float duration = PlatformLooping.speed / 5;
-        float magnitude = duration / 20;
+        float duration = PlatformLooping.speed / 5f;
+        float magnitude = duration / 20f;
 
         while (duration > 0f)
         {
-            cameraParent.transform.localPosition = originalPos + new Vector3(Random.Range(-magnitude, magnitude), Random.Range(-magnitude, magnitude), Random.Range(-magnitude, magnitude));
-            cameraParent.transform.localRotation = Quaternion.Euler(Random.Range(-magnitude * 90, magnitude * 90), Random.Range(-magnitude * 90, magnitude * 90), Random.Range(-magnitude * 90, magnitude * 90));
+            cameraParent.transform.localPosition = originalPos + new Vector3(Random.Range(-magnitude, magnitude), 
+                Random.Range(-magnitude, magnitude), 
+                Random.Range(-magnitude, magnitude));
+            cameraParent.transform.localRotation = Quaternion.Euler(Random.Range(-magnitude * 90f, magnitude * 90f), 
+                Random.Range(-magnitude * 90f, magnitude * 90f), 
+                Random.Range(-magnitude * 90f, magnitude * 90f));
             duration -= Time.deltaTime;
-            magnitude = duration / 20;
+            magnitude = duration / 20f;
             yield return null;
         }
         cameraParent.transform.localPosition = originalPos;
@@ -106,26 +113,31 @@ public class ObstacleInstantiator : MonoBehaviour
     IEnumerator BuffBoostMove()
     {
         Vector3 movePos = originalPos + Vector3.back * 10f;
+        float currentAnimSpeed = animators[0].GetFloat("speed");
+        float boostAnimSpeed = currentAnimSpeed * 4f;
 
-        for (float t = 0; cameraParent.transform.localPosition != movePos; t += Time.deltaTime)
+        for (float t = 0; Vector3.Magnitude(movePos - cameraParent.transform.localPosition) > 0.01f; t += Time.deltaTime)
         {
+            foreach (Animator anim in animators)
+                if (PlatformLooping.HasSpeed(anim))
+                    anim.SetFloat("speed", Mathf.SmoothStep(currentAnimSpeed, boostAnimSpeed, t));
+            
             cameraParent.transform.localPosition = Vector3.Slerp(originalPos, movePos, t);
             yield return null;
         }
 
-        for (float t = 0; cameraParent.transform.localPosition != originalPos; t += Time.deltaTime)
+        for (float t = 0; Vector3.Magnitude(originalPos - cameraParent.transform.localPosition) > 0.01f; t += Time.deltaTime)
         {
+            foreach (Animator anim in animators)
+                if (PlatformLooping.HasSpeed(anim))
+                    anim.SetFloat("speed", Mathf.SmoothStep(boostAnimSpeed, currentAnimSpeed, t));
+
             cameraParent.transform.localPosition = Vector3.Slerp(movePos, originalPos, t);
             yield return null;
         }
     }
-    public void StartCameraShake()
-    {
-        StartCoroutine(CameraShake());
-    }
+    public void StartCameraShake() => StartCoroutine(CameraShake());
 
-    public void StartBuffBoostMove()
-    {
-        StartCoroutine(BuffBoostMove());
-    }
+    public void StartBuffBoostMove() => StartCoroutine(BuffBoostMove());
+
 }

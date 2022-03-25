@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1200676374367080563}
   - component: {fileID: 8017067788739592285}
   - component: {fileID: 2683829068086060429}
-  - component: {fileID: 5883816446986383149}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -80,21 +79,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '(it doesn''t matter what''s here - it''ll get replaced anyways) '
---- !u!114 &5883816446986383149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4073767513643252804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7dce8764e18df54bb40f79f97318838, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-  - Hier zijn wat test-zinnetjes om duidelijk
-  - te maken hoe dit werkt.
-  - Edit het nummer naast Dialogue om aan
-  - te geven hoeveel zinnen je wilt.
-  - Schrijf dan de zinnen in de elementen.

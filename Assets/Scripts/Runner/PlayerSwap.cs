@@ -12,6 +12,7 @@ public class PlayerSwap : MonoBehaviour
     static RunnerMovement[] runners;
     public static int currentPlayer = 0;
     float currentTime, randomSwitchTime, scaledMinimumTime;
+    static TimeManager timeManager;
 
     [Tooltip("Minimum time a player should be able to play the game.")]
     public float minimumTime;
@@ -21,6 +22,7 @@ public class PlayerSwap : MonoBehaviour
         currentTime = 0f;
         randomSwitchTime = UnityEngine.Random.Range(0f, 1f);
         scaledMinimumTime = Time.time + minimumTime;
+        timeManager = GetComponent<TimeManager>();
 
         currentPlayer = 0;
 
@@ -41,19 +43,20 @@ public class PlayerSwap : MonoBehaviour
         {
             player.GetComponent<RunnerMovement>().enabled = player == players[currentPlayer];
             player.tag = (player == players[currentPlayer]) ? "Player" : "Untagged";
-
             startTransforms.Add(player.transform.localPosition); //sorts in art, des, dev (alphabetically)
         }
+
+
+        if (AreaTalk.gamePhase < 1)
+            foreach (GameObject donkeyHead in GameObject.FindGameObjectsWithTag("Donkey Head"))
+                donkeyHead.SetActive(false);
     }
 
-    void FixedUpdate()
-    {
-        RandomTimer();
-    }
+    void FixedUpdate() => RandomTimer();
 
     void RandomTimer()
     {
-        currentTime += Time.deltaTime;
+        currentTime += Time.fixedDeltaTime;
 
         if ((randomSwitchTime + Mathf.Max(scaledMinimumTime - Time.time, 0f)) < (1f - (1f / (1f + currentTime / 10f))))
         {
@@ -81,6 +84,7 @@ public class PlayerSwap : MonoBehaviour
         }
 
         instance.StartCoroutine(ChangePosition());
+        timeManager.SlowDown();
 
         BuffAndDebuff[] buffAndDebuff = FindObjectsOfType<BuffAndDebuff>();
 
@@ -100,10 +104,14 @@ public class PlayerSwap : MonoBehaviour
     }
 
     static IEnumerator ChangePosition()
-    {        
+    {
+        float beginSpeed = PlatformLooping.speed;
+        float endSpeed = Mathf.Max(PlatformLooping.speed / 1.5f, 0.85f);
         //changePos works, there's just wrong positions for some reason
         for (float time = 0f; time < 0.5f; time += Time.deltaTime)
         {
+            PlatformLooping.speed = Mathf.SmoothStep(beginSpeed, endSpeed, time * 2f);
+
             for (int i = 0; i < players.Count; i++)
                 players[i].transform.position = Vector3.Lerp(startTransforms[currentPos[i]],
                     startTransforms[(currentPos[i] + 1) % currentPos.Count], time * 2f);

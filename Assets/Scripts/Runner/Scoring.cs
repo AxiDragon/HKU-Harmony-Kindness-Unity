@@ -8,16 +8,15 @@ public class Scoring : MonoBehaviour
 {
     CanvasGroup whiteFlash;
     Text scoreText;
-    ObstacleInstantiator obstacleInstantiator;
+    float difficulty = 25f;
 
-    float score = 0;
-    bool cutsceneTriggered = false;
+    [System.NonSerialized]
+    public float score = 0;
 
     void Awake()
     {
-        whiteFlash = FindObjectOfType<CanvasGroup>().GetComponent<CanvasGroup>();
-        obstacleInstantiator = FindObjectOfType<ObstacleInstantiator>().GetComponent<ObstacleInstantiator>();
-        scoreText = FindObjectOfType<Text>().GetComponent<Text>();
+        whiteFlash = FindObjectOfType<CanvasGroup>();
+        scoreText = FindObjectOfType<Text>();
         scoreText.text = score.ToString();
 
         //debug
@@ -26,31 +25,24 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        score += Time.deltaTime * PlatformLooping.speed;
+        score += Time.fixedDeltaTime * PlatformLooping.speed;
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
-
-        switch (AreaTalk.gamePhase)
-        {
-            case 1:
-                if ((score > 50) && !cutsceneTriggered)
-                {
-                    cutsceneTriggered = true;
-                    LoadingScreen.sceneNumber = 3;
-                    StartCoroutine(StartFlashback());
-                }
-                break;
-        }
     }
 
-    IEnumerator StartFlashback()
+    public IEnumerator StartFlashback()
     {
         while (whiteFlash.alpha < 1)
         {
-
             whiteFlash.alpha += Time.deltaTime / 2;
             yield return new WaitForEndOfFrame();
         }
+
+        if (score > (AreaTalk.gamePhase + 1f) * difficulty)
+            LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
+        else
+            LoadingScreen.sceneNumber = SceneManager.sceneCountInBuildSettings - 1;
+
         SceneManager.LoadScene("LoadingScreen");
     }
 }

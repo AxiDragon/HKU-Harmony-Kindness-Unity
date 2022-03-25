@@ -20,7 +20,9 @@ public class PlatformLooping : MonoBehaviour
 
     static Animator[] playerAnims;
 
-    static bool HasSpeed(Animator anim)
+    bool gameOvered = false;
+
+    public static bool HasSpeed(Animator anim)
     {
         foreach (AnimatorControllerParameter parameter in anim.parameters)
         {
@@ -32,8 +34,10 @@ public class PlatformLooping : MonoBehaviour
 
     void Start()
     {
-        speed = startSpeed;
-        baseSpeed = speed;
+        baseSpeed = startSpeed;
+        speed = startSpeed / (3f / (AreaTalk.gamePhase + 3f));
+
+        FindObjectOfType<Camera>().fieldOfView = 60f * speed / baseSpeed;
 
         playerAnims = FindObjectsOfType<Animator>();
         player = GameObject.Find("Players");
@@ -52,12 +56,15 @@ public class PlatformLooping : MonoBehaviour
     void FixedUpdate()
     {
         foreach (GameObject platform in platforms)
-            platform.transform.position += Vector3.back * speed;
+            platform.transform.position += Vector3.back * speed * Time.fixedDeltaTime * 60f;
 
         speed = Mathf.Min(speed, maxSpeed);
 
-        if (speed < lowestSpeed)
+        if ((speed < lowestSpeed) && !gameOvered)
+        {
+            gameOvered = true;
             GameOver();
+        }
     }
 
     public static void UpdatePlayerSpeed()
@@ -69,13 +76,7 @@ public class PlatformLooping : MonoBehaviour
         }
     }
 
-    public void LoopPlatforms(GameObject loopedPlatform)
-    {
-        loopedPlatform.transform.position += new Vector3(0, 0, platformLength * platforms.Length);
-    }
+    public void LoopPlatforms(GameObject loopedPlatform) => loopedPlatform.transform.position += new Vector3(0, 0, platformLength * platforms.Length);
 
-    void GameOver()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    void GameOver() => StartCoroutine(FindObjectOfType<Scoring>().StartFlashback());
 }

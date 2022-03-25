@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +7,9 @@ public class RunnerMovement : MonoBehaviour
     public Rigidbody rb;
     [Tooltip("Force multiplier applied to the player cube.")]
     public float extraForce;
-    [Tooltip("Force divider applied to the player cube for jumps (multiplied by extraForce).")]
-    public float jumpDamping;
-    public float groundDistance;
+    [Tooltip("Force multiplier applied to the player cube for jumps.")]
+    public float jumpForce;
+    float groundDistance = 0.1f;
     bool isGrounded = true;
     Animator playerAnim;
 
@@ -35,24 +33,33 @@ public class RunnerMovement : MonoBehaviour
         {
             playerAnim.SetBool("isGrounded", true);
 
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 playerAnim.SetTrigger("jump");
-                rb.AddForce(Vector3.up * extraForce / jumpDamping, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
         else
             playerAnim.SetBool("isGrounded", false);
-            
+    }
+
+    void FixedUpdate()
+    {
 
         float horizontal = Input.GetAxis("Horizontal");
 
-        rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime);
+        rb.AddForce(Vector3.right * horizontal * extraForce * Time.fixedDeltaTime);
+        rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, extraForce / -5f, extraForce / 5f), rb.velocity.y, rb.velocity.z);
 
-        Vector3 rotation = Vector3.forward * (rb.velocity.x / 5);
+        if (isGrounded)
+            rb.transform.Translate(Vector3.right * horizontal * Time.fixedDeltaTime * 3f);
+
+        Vector3 rotation = Vector3.forward * rb.velocity.x;
         transform.rotation = Quaternion.Euler(rotation);
 
         if (transform.position.y < -1)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        print(Time.fixedDeltaTime);
     }
 }
