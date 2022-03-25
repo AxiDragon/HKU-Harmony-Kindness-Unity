@@ -27,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ConflictScene_Vertrouwenspersoon.unity
     guid: 2d73664b7d3a4d94db1fab91bf2618d5
   - enabled: 1
+    path: Assets/Scenes/ConflictScene_Vertrouwenspersoon2.unity
+    guid: 186200c65c399dd42992774aa66d9ef2
+  - enabled: 1
+    path: Assets/Scenes/Game Won.unity
+    guid: 2e88b46ba2affc14d862f8f12e01e9ff
+  - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 07be1a325fb76d840ac334aba6f1973e
   - enabled: 1

@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa7e7b5f32fa9945838e62ec89626e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 150
 --- !u!114 &248834108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ MonoBehaviour:
   - {fileID: 7841408862804742818, guid: c9da82a2f3059e94d89c55206a90f463, type: 3}
   maxSpawnsActive: 0
   maxSpawnTest: 0
-  spawnCooldown: 8
+  spawnCooldown: 5
   limitTime: 180
 --- !u!114 &248834109
 MonoBehaviour:
@@ -283,7 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79f81ac6159e0e4abcd74dfee04613c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
 --- !u!114 &248834111
 MonoBehaviour:
   m_ObjectHideFlags: 0

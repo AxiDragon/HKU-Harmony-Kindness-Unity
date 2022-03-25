@@ -22,6 +22,8 @@ public class BuffAndDebuff : MonoBehaviour
 
     void Awake()
     {
+        AreaTalk.gamePhase = 5;
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnim = player.GetComponent<Animator>();
 
@@ -41,12 +43,8 @@ public class BuffAndDebuff : MonoBehaviour
                 break;
             case "Basic Debuff":
                 speedAdjustment = (PlatformLooping.speed / -7.5f) * (3f / (AreaTalk.gamePhase + 3f));
-                if (GameObject.FindGameObjectWithTag("Bully"))
-                    if (GameObject.FindGameObjectWithTag("Bully") == transform.GetChild(0) && AreaTalk.gamePhase > 4)
-                    {
-                        speedAdjustment *= .1f;
-                        print("it do be happen");
-                    }
+                if (gameObject.layer == 7 && AreaTalk.gamePhase >= 5)
+                    speedAdjustment *= 0.1f;
                 break;
         }
     }

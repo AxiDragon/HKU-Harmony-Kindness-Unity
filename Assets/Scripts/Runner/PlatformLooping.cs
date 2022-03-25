@@ -35,7 +35,7 @@ public class PlatformLooping : MonoBehaviour
     void Start()
     {
         baseSpeed = startSpeed;
-        speed = startSpeed / (3f / (AreaTalk.gamePhase + 3f));
+        speed = startSpeed / (6f / (AreaTalk.gamePhase + 6f));
 
         FindObjectOfType<Camera>().fieldOfView = 60f * speed / baseSpeed;
 

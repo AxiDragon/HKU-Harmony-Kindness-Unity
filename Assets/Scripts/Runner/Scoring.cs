@@ -8,7 +8,7 @@ public class Scoring : MonoBehaviour
 {
     CanvasGroup whiteFlash;
     Text scoreText;
-    float difficulty = 350f;
+    public float difficulty = 250f;
 
     [System.NonSerialized]
     public float score = 0;
@@ -28,6 +28,11 @@ public class Scoring : MonoBehaviour
         score += Time.fixedDeltaTime * PlatformLooping.speed;
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
+
+        if (score > (AreaTalk.gamePhase + 1f) * difficulty && AreaTalk.gamePhase >= 5)
+        {
+            StartCoroutine(StartFlashback());
+        }
     }
 
     public IEnumerator StartFlashback()
@@ -38,7 +43,7 @@ public class Scoring : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        if (score > (AreaTalk.gamePhase + 1f) * difficulty)
+        if (score > (AreaTalk.gamePhase + 1f) * difficulty || AreaTalk.gamePhase >= 5)
             LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
         else
             LoadingScreen.sceneNumber = SceneManager.sceneCountInBuildSettings - 1;

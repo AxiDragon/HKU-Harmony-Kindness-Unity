@@ -5,15 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DebugScript : MonoBehaviour
 {
-    [Tooltip("Whether debug commands are available or not")]
-    public bool active;
-
-    public void Start()
-    {
-        if (!active)
-            enabled = false;
-    }
-
     void Update()
     {
         string input = Input.inputString;
@@ -29,7 +20,7 @@ public class DebugScript : MonoBehaviour
                 FindObjectOfType<ObstacleInstantiator>().limitTime = 1f;
                 break;
             case "c":
-                FindObjectOfType<Scoring>().score += 250f;
+                FindObjectOfType<Scoring>().score += 99999f;
                 break;
             case "q":
                 PlatformLooping.speed += 0.5f;
@@ -37,15 +28,10 @@ public class DebugScript : MonoBehaviour
             case "z":
                 PlatformLooping.speed -= 0.5f;
                 break;
+            case "t":
+                LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
+                SceneManager.LoadScene("LoadingScreen");
+                break;
         }
-
-        //if (Input.GetKeyDown(KeyCode.R))
-
-        //if (Input.GetKeyDown(KeyCode.E))
-        //    PlayerSwap.ChangePlayer();
-
-        //if (Input.GetKeyDown(KeyCode.F))
-
-        //if (Input.GetKeyDown(KeyCode.C))
     }
 }

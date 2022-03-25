@@ -47,8 +47,7 @@ public class PlayerSwap : MonoBehaviour
             startTransforms.Add(player.transform.localPosition); //sorts in art, des, dev (alphabetically)
         }
 
-
-        if (Enumerable.Range(1, 4).Contains(AreaTalk.gamePhase))
+        if (!(AreaTalk.gamePhase > 0 && AreaTalk.gamePhase <= 4))
             foreach (GameObject donkeyHead in GameObject.FindGameObjectsWithTag("Donkey Head"))
                 donkeyHead.SetActive(false);
     }

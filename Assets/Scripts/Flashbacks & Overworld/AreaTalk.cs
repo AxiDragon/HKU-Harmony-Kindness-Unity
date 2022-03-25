@@ -47,7 +47,7 @@ public class AreaTalk : MonoBehaviour
         if (GetComponentInChildren<Animator>())
             playerAnim = GetComponentInChildren<Animator>();
 
-        if (Enumerable.Range(1, 4).Contains(gamePhase))
+        if (gamePhase > 0 && gamePhase <= 4 && GameObject.FindGameObjectWithTag("Donkey Head"))
             GameObject.FindGameObjectWithTag("Donkey Head").GetComponent<Renderer>().material.SetFloat("Fade", 1.5f);
     }
 
