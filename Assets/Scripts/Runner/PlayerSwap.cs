@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,7 @@ public class PlayerSwap : MonoBehaviour
         }
 
 
-        if (AreaTalk.gamePhase < 1)
+        if (Enumerable.Range(1, 4).Contains(AreaTalk.gamePhase))
             foreach (GameObject donkeyHead in GameObject.FindGameObjectsWithTag("Donkey Head"))
                 donkeyHead.SetActive(false);
     }

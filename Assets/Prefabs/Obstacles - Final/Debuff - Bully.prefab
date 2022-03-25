@@ -66,9 +66,9 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3778484749873188340, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
---- !u!4 &5801162103657979222 stripped
+--- !u!4 &8393219962831415814 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6088638491762366878, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8107705661849169614, guid: 6dad4b77dca812e4ba2c93cbba6c37a9, type: 3}
   m_PrefabInstance: {fileID: 359986985520710856}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &606881414293135893
@@ -76,11 +76,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5801162103657979222}
+    m_TransformParent: {fileID: 8393219962831415814}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_LocalScale.x
@@ -112,15 +112,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fa557f45f7207124dac88acdb537e98c, type: 3}
       propertyPath: m_TagString
-      value: Basic Debuff
+      value: Bully
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa557f45f7207124dac88acdb537e98c, type: 3}

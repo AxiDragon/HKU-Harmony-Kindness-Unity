@@ -32,8 +32,7 @@ public class AreaTalk : MonoBehaviour
 
     void Awake()
     {
-        gamePhase = 3;
-
+        print(gamePhase);
         dialogueBox = FindObjectOfType<Text>();
 
         dialogueBox.text = dialogue[currentDialog];
@@ -48,9 +47,8 @@ public class AreaTalk : MonoBehaviour
         if (GetComponentInChildren<Animator>())
             playerAnim = GetComponentInChildren<Animator>();
 
-        if (Enumerable.Range(1, 100).Contains(gamePhase))
+        if (Enumerable.Range(1, 4).Contains(gamePhase))
             GameObject.FindGameObjectWithTag("Donkey Head").GetComponent<Renderer>().material.SetFloat("Fade", 1.5f);
-
     }
 
     void Update()
