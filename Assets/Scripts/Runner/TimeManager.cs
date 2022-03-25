@@ -35,13 +35,13 @@ public class TimeManager : MonoBehaviour
 
         for (float t = 0; mainCamera.fieldOfView != shiftFOV; t += Time.unscaledDeltaTime)
         {   
-            mainCamera.fieldOfView = Mathf.SmoothStep(currentFOV, shiftFOV, t);
+            mainCamera.fieldOfView = Mathf.SmoothStep(currentFOV, shiftFOV, t / (slowDownLength / 2));
             yield return null;
         }
 
         for (float t = 0; mainCamera.fieldOfView != currentFOV; t += Time.unscaledDeltaTime)
         {
-            mainCamera.fieldOfView = Mathf.SmoothStep(shiftFOV, currentFOV, t);
+            mainCamera.fieldOfView = Mathf.SmoothStep(shiftFOV, currentFOV, t / (slowDownLength / 2));
             yield return null;
         }
     }

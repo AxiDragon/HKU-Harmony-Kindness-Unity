@@ -92,7 +92,7 @@ public class BuffAndDebuff : MonoBehaviour
             if (!playerAnim.GetCurrentAnimatorStateInfo(0).IsName("HitDebuff"))
                 playerAnim.SetTrigger("hitDebuff");
 
-            obstacle.StartCameraShake();
+            obstacle.StartCameraShake(speedAdjustment);
         }
 
         if (transform.root.Find("Character"))

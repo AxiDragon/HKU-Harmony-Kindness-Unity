@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +47,10 @@ public class AreaTalk : MonoBehaviour
 
         if (GetComponentInChildren<Animator>())
             playerAnim = GetComponentInChildren<Animator>();
+
+        if (Enumerable.Range(1, 100).Contains(gamePhase))
+            GameObject.FindGameObjectWithTag("Donkey Head").GetComponent<Renderer>().material.SetFloat("Fade", 1.5f);
+
     }
 
     void Update()
@@ -115,10 +120,10 @@ public class AreaTalk : MonoBehaviour
         switch (tag)
         {
             case "Bully":
-                FindObjectOfType<Animation>().Play();
+                FindObjectOfType<Animation>().Play("DonkeyHeadFadeIn");
                 break;
             case "Confidential Counsellor":
-                FindObjectOfType<Animation>().Play();
+                FindObjectOfType<Animation>().Play("DonkeyHeadFadeOut");
                 break;
         }
     }

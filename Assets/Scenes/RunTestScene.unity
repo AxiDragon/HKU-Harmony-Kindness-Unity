@@ -256,7 +256,7 @@ MonoBehaviour:
   - {fileID: 7841408862804742818, guid: c9da82a2f3059e94d89c55206a90f463, type: 3}
   maxSpawnsActive: 0
   maxSpawnTest: 0
-  spawnCooldown: 12
+  spawnCooldown: 8
   limitTime: 180
 --- !u!114 &248834109
 MonoBehaviour:
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762ae88ae2e9c8645b407e9813201068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumTime: 10
+  minimumTime: 20
 --- !u!114 &248834110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,9 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3e2244f35ff3e41b852cd1c079c131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowDownFactor: 0.1
-  slowDownLength: 2
-  cameraShiftIntensity: 25
+  slowDownFactor: 0.04
+  slowDownLength: 4
+  cameraShiftIntensity: 35
 --- !u!1001 &300653114
 PrefabInstance:
   m_ObjectHideFlags: 0
