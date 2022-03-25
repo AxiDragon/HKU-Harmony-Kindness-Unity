@@ -8,7 +8,7 @@ public class Scoring : MonoBehaviour
 {
     CanvasGroup whiteFlash;
     Text scoreText;
-    float difficulty = 25f;
+    float difficulty = 350f;
 
     [System.NonSerialized]
     public float score = 0;

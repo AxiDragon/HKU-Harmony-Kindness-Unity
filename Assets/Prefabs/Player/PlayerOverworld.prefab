@@ -1864,6 +1864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DonkeyHead
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11e5507eabf8c22459b6921fb80d3dc2, type: 3}
+      propertyPath: m_TagString
+      value: Donkey Head
+      objectReference: {fileID: 0}
     - target: {fileID: 1170970068873931921, guid: 11e5507eabf8c22459b6921fb80d3dc2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

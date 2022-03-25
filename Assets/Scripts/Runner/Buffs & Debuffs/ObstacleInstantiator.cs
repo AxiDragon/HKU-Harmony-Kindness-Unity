@@ -81,10 +81,10 @@ public class ObstacleInstantiator : MonoBehaviour
         StartCoroutine(CameraFOVAdjust(currentFOV, futureFOV));
     }
 
-    IEnumerator CameraShake()
+    IEnumerator CameraShake(float magnitude)
     {
-        float duration = PlatformLooping.speed / 5;
-        float magnitude = duration / 20;
+        float duration = PlatformLooping.speed / 5f;
+        //float magnitude = duration / 20f;
 
         while (duration > 0f)
         {
@@ -123,7 +123,7 @@ public class ObstacleInstantiator : MonoBehaviour
             yield return null;
         }
     }
-    public void StartCameraShake() => StartCoroutine(CameraShake());
+    public void StartCameraShake(float speedAdjustment) => StartCoroutine(CameraShake(speedAdjustment));
 
     public void StartBuffBoostMove() => StartCoroutine(BuffBoostMove());
 }
