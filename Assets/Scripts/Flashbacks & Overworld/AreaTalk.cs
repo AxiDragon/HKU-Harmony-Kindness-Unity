@@ -31,6 +31,8 @@ public class AreaTalk : MonoBehaviour
 
     void Awake()
     {
+        print(gamePhase);
+
         dialogueBox = FindObjectOfType<Text>();
 
         dialogueBox.text = dialogue[currentDialog];

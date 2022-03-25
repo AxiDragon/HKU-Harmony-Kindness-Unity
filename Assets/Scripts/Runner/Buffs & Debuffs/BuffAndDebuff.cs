@@ -37,10 +37,10 @@ public class BuffAndDebuff : MonoBehaviour
         switch (tag)
         {
             case "Basic Buff":
-                speedAdjustment = PlatformLooping.speed / 10;
+                speedAdjustment = (PlatformLooping.speed / 15f) * (3f / (AreaTalk.gamePhase + 3f));
                 break;
             case "Basic Debuff":
-                speedAdjustment = PlatformLooping.speed / -5;
+                speedAdjustment = (PlatformLooping.speed / -7.5f) * (3f / (AreaTalk.gamePhase + 3f));
                 break;
         }
     }
@@ -54,7 +54,7 @@ public class BuffAndDebuff : MonoBehaviour
             playerAnim.SetFloat("speed", PlatformLooping.speed);
     }
 
-    void FixedUpdate() => transform.root.position += Vector3.back * PlatformLooping.speed;
+    void FixedUpdate() => transform.root.position += Vector3.back * PlatformLooping.speed * Time.fixedDeltaTime * 60f;
 
     void OnTriggerEnter(Collider other)
     {
