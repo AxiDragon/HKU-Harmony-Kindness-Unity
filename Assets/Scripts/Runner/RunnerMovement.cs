@@ -59,7 +59,5 @@ public class RunnerMovement : MonoBehaviour
 
         if (transform.position.y < -1)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        print(Time.fixedDeltaTime);
     }
 }

@@ -31,7 +31,7 @@ public class AreaTalk : MonoBehaviour
 
     void Awake()
     {
-        print(gamePhase);
+        gamePhase = 3;
 
         dialogueBox = FindObjectOfType<Text>();
 
