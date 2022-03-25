@@ -22,7 +22,7 @@ public class PlatformLooping : MonoBehaviour
 
     bool gameOvered = false;
 
-    public static bool HasSpeed(Animator anim)
+    static bool HasSpeed(Animator anim)
     {
         foreach (AnimatorControllerParameter parameter in anim.parameters)
         {
@@ -34,10 +34,8 @@ public class PlatformLooping : MonoBehaviour
 
     void Start()
     {
-        baseSpeed = startSpeed;
-        speed = startSpeed / (3f / (AreaTalk.gamePhase + 3f));
-
-        FindObjectOfType<Camera>().fieldOfView = 60f * speed / baseSpeed;
+        speed = startSpeed;
+        baseSpeed = speed;
 
         playerAnims = FindObjectsOfType<Animator>();
         player = GameObject.Find("Players");
@@ -56,7 +54,7 @@ public class PlatformLooping : MonoBehaviour
     void FixedUpdate()
     {
         foreach (GameObject platform in platforms)
-            platform.transform.position += Vector3.back * speed * Time.fixedDeltaTime * 60f;
+            platform.transform.position += Vector3.back * speed;
 
         speed = Mathf.Min(speed, maxSpeed);
 

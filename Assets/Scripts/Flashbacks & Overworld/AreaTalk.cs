@@ -25,6 +25,8 @@ public class AreaTalk : MonoBehaviour
     public int[] specialTriggers;
     int currentDialog, currentAnimationEvent = 0;
 
+    [SerializeField] private GameObject dialogueGroup;
+
     public List<string> dialogue = new List<string>();
 
     void Awake()
@@ -35,6 +37,7 @@ public class AreaTalk : MonoBehaviour
 
         dialogueGameObject = dialogueBox.gameObject;
         dialogueGameObject.SetActive(false);
+        dialogueGroup.SetActive(false);
         flash = FindObjectOfType<WhiteFlash>();
         movement = FindObjectOfType<MovementScript>();
         lookAtPlayer = FindObjectOfType<LookAtPlayer>();
@@ -54,6 +57,7 @@ public class AreaTalk : MonoBehaviour
         if (inRange && (Input.GetKeyDown(KeyCode.E) || autoTrigger))
         {
             talking = true;
+            dialogueGroup.SetActive(true);
             dialogueGameObject.SetActive(true);
             StartCoroutine(movement.LookAtCommunicator(transform.position));
             StartCoroutine(LookAtCommunicator(movement.gameObject.transform.position));
@@ -63,7 +67,7 @@ public class AreaTalk : MonoBehaviour
         if (!dialogueGameObject.activeInHierarchy)
             return;
 
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
         {
             currentDialog++;
             ChangeText();
@@ -147,6 +151,7 @@ public class AreaTalk : MonoBehaviour
         if (currentDialog == dialogue.Count)
         {
             dialogueGameObject.SetActive(false);
+            dialogueGroup.SetActive(false);
             return;
         }
 
@@ -159,7 +164,9 @@ public class AreaTalk : MonoBehaviour
 
         while (transform.rotation != toRotation)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 15f * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,
+                                                          toRotation,
+                                                          15 * Time.deltaTime);
 
             transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
 

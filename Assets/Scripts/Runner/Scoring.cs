@@ -25,7 +25,7 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        score += Time.fixedDeltaTime * PlatformLooping.speed;
+        score += Time.deltaTime * PlatformLooping.speed;
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
     }

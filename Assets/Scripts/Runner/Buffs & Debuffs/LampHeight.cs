@@ -6,6 +6,6 @@ public class LampHeight : MonoBehaviour
 {
     void Start()
     {
-        transform.Translate(Vector3.up * FindObjectOfType<RunnerMovement>().jumpForce * 50f);
+        //transform.Translate(Vector3.up * FindObjectOfType<RunnerMovement>().jumpForce * 50f);
     }
 }

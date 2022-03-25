@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  extraForce: 50
-  jumpDamping: 900
+  extraForce: 60
+  jumpDamping: 1500
 --- !u!95 &3906341638055520108
 Animator:
   serializedVersion: 3
