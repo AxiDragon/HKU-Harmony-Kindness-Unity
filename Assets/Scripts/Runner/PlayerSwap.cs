@@ -12,6 +12,7 @@ public class PlayerSwap : MonoBehaviour
     static RunnerMovement[] runners;
     public static int currentPlayer = 0;
     float currentTime, randomSwitchTime, scaledMinimumTime;
+    static TimeManager timeManager;
 
     [Tooltip("Minimum time a player should be able to play the game.")]
     public float minimumTime;
@@ -21,6 +22,7 @@ public class PlayerSwap : MonoBehaviour
         currentTime = 0f;
         randomSwitchTime = UnityEngine.Random.Range(0f, 1f);
         scaledMinimumTime = Time.time + minimumTime;
+        timeManager = GetComponent<TimeManager>();
 
         currentPlayer = 0;
 
@@ -54,7 +56,7 @@ public class PlayerSwap : MonoBehaviour
 
     void RandomTimer()
     {
-        currentTime += Time.deltaTime;
+        currentTime += Time.fixedDeltaTime;
 
         if ((randomSwitchTime + Mathf.Max(scaledMinimumTime - Time.time, 0f)) < (1f - (1f / (1f + currentTime / 10f))))
         {
@@ -82,6 +84,7 @@ public class PlayerSwap : MonoBehaviour
         }
 
         instance.StartCoroutine(ChangePosition());
+        timeManager.SlowDown();
 
         BuffAndDebuff[] buffAndDebuff = FindObjectsOfType<BuffAndDebuff>();
 

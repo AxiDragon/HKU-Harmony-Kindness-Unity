@@ -8,7 +8,7 @@ public class Scoring : MonoBehaviour
 {
     CanvasGroup whiteFlash;
     Text scoreText;
-    float difficulty = 350f;
+    float difficulty = 25f;
 
     [System.NonSerialized]
     public float score = 0;
@@ -25,7 +25,7 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        score += Time.deltaTime * PlatformLooping.speed;
+        score += Time.fixedDeltaTime * PlatformLooping.speed;
 
         scoreText.text = Mathf.RoundToInt(score).ToString();
     }
