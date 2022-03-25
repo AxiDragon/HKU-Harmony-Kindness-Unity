@@ -56,7 +56,7 @@ public class PlatformLooping : MonoBehaviour
     void FixedUpdate()
     {
         foreach (GameObject platform in platforms)
-            platform.transform.position += Vector3.back * speed;
+            platform.transform.position += Vector3.back * speed * Time.fixedDeltaTime * 60f;
 
         speed = Mathf.Min(speed, maxSpeed);
 

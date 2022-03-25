@@ -41,20 +41,25 @@ public class RunnerMovement : MonoBehaviour
         }
         else
             playerAnim.SetBool("isGrounded", false);
-            
+    }
+
+    void FixedUpdate()
+    {
 
         float horizontal = Input.GetAxis("Horizontal");
 
-        rb.AddForce(Vector3.right * horizontal * extraForce * Time.deltaTime);
+        rb.AddForce(Vector3.right * horizontal * extraForce * Time.fixedDeltaTime);
         rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, extraForce / -5f, extraForce / 5f), rb.velocity.y, rb.velocity.z);
 
         if (isGrounded)
-            rb.transform.Translate(Vector3.right * horizontal * Time.deltaTime * 3f);
+            rb.transform.Translate(Vector3.right * horizontal * Time.fixedDeltaTime * 3f);
 
         Vector3 rotation = Vector3.forward * rb.velocity.x;
         transform.rotation = Quaternion.Euler(rotation);
 
         if (transform.position.y < -1)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        print(Time.fixedDeltaTime);
     }
 }

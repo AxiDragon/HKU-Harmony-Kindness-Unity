@@ -54,7 +54,7 @@ public class BuffAndDebuff : MonoBehaviour
             playerAnim.SetFloat("speed", PlatformLooping.speed);
     }
 
-    void FixedUpdate() => transform.root.position += Vector3.back * PlatformLooping.speed;
+    void FixedUpdate() => transform.root.position += Vector3.back * PlatformLooping.speed * Time.fixedDeltaTime * 60f;
 
     void OnTriggerEnter(Collider other)
     {
