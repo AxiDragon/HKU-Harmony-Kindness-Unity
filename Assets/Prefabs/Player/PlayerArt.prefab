@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   extraForce: 60
-  jumpDamping: 1500
+  jumpForce: 0
 --- !u!95 &3906341638055520108
 Animator:
   serializedVersion: 3
@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: -3540725318260445992, guid: 63199342f088cdb46ae464579c500a8b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a8d1c3b99a26a7a48bc3131757e0a7a2, type: 2}
+      objectReference: {fileID: 2100000, guid: ef5dff2fb67aeaa4b8d846bb2b36dc03, type: 2}
     - target: {fileID: 919132149155446097, guid: 63199342f088cdb46ae464579c500a8b, type: 3}
       propertyPath: m_Name
       value: BaseCharacter
