@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
+    path: Assets/Scenes/StartGame/MenuScene.unity
     guid: 80731591f4ab986449aa00f4894a42da
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Over.unity
     guid: 8848838e1a74beb4e9cda5cb259f18a7
+  - enabled: 1
+    path: Assets/Scenes/StartGame/ConceptExplenationSlide.unity
+    guid: 5dd38af34745feb4cb5629f69f83c1f6
+  - enabled: 1
+    path: Assets/Scenes/StartGame/TurnExplenation.unity
+    guid: 96c04a81136d03e41be36350219c32c5
   m_configObjects: {}

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class NextSlide : MonoBehaviour
 {
     public void PlayGame()
     {
-        LoadingScreen.sceneNumber = 11;
-        SceneManager.LoadScene("ConceptExplenationSlide");
+        LoadingScreen.sceneNumber = 12;
+        SceneManager.LoadScene("TurnExplenation");
     }
 
     public void QuitGame()
