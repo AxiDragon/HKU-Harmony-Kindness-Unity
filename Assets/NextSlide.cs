@@ -8,7 +8,7 @@ public class NextSlide : MonoBehaviour
     public void PlayGame()
     {
         LoadingScreen.sceneNumber = 12;
-        SceneManager.LoadScene("TurnExplenation");
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void QuitGame()
