@@ -46,7 +46,7 @@ public class Scoring : MonoBehaviour
         if (score > (AreaTalk.gamePhase + 1f) * difficulty || AreaTalk.gamePhase >= 5)
             LoadingScreen.sceneNumber = 3 + AreaTalk.gamePhase;
         else
-            LoadingScreen.sceneNumber = SceneManager.sceneCountInBuildSettings - 1;
+            LoadingScreen.sceneNumber = SceneManager.GetSceneByName("Game Over").buildIndex;
 
         SceneManager.LoadScene("LoadingScreen");
     }

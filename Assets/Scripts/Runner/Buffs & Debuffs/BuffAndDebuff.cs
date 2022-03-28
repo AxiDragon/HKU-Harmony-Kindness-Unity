@@ -22,8 +22,6 @@ public class BuffAndDebuff : MonoBehaviour
 
     void Awake()
     {
-        AreaTalk.gamePhase = 5;
-
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnim = player.GetComponent<Animator>();
 

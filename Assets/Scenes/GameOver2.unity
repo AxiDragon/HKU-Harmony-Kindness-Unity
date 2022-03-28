@@ -130,11 +130,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1475945134}
     m_Modifications:
+    - target: {fileID: 312176320, guid: 00426a0b69187b249b2e07454d1154f8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -31
+      objectReference: {fileID: 0}
     - target: {fileID: 312176321, guid: 00426a0b69187b249b2e07454d1154f8, type: 3}
       propertyPath: m_text
-      value: 'RETAKE
-
-'
+      value: SECOND CHANCE
+      objectReference: {fileID: 0}
+    - target: {fileID: 312176321, guid: 00426a0b69187b249b2e07454d1154f8, type: 3}
+      propertyPath: m_fontSize
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 312176321, guid: 00426a0b69187b249b2e07454d1154f8, type: 3}
+      propertyPath: m_margin.z
+      value: -61.63105
+      objectReference: {fileID: 0}
+    - target: {fileID: 312176321, guid: 00426a0b69187b249b2e07454d1154f8, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 455484855, guid: 00426a0b69187b249b2e07454d1154f8, type: 3}
       propertyPath: m_AnchoredPosition.x
