@@ -6,11 +6,13 @@ public class TimeManager : MonoBehaviour
     public float slowDownFactor = .1f;
     public float slowDownLength = 2f;
     public float cameraShiftIntensity = 10f;
+    RectTransform rotationReminder;
     Camera mainCamera;
 
     void Start()
     {
         mainCamera = FindObjectOfType<Camera>();
+        rotationReminder = GameObject.Find("RotationReminder").GetComponent<RectTransform>();
     }
 
     void Update()
@@ -34,14 +36,16 @@ public class TimeManager : MonoBehaviour
         float shiftFOV = currentFOV - cameraShiftIntensity;
 
         for (float t = 0; mainCamera.fieldOfView != shiftFOV; t += Time.unscaledDeltaTime)
-        {   
-            mainCamera.fieldOfView = Mathf.SmoothStep(currentFOV, shiftFOV, t / (slowDownLength / 2));
+        {
+            rotationReminder.transform.localPosition = new Vector2(0f, Mathf.SmoothStep(540f, 240f, t / (slowDownLength / 2f)));
+            mainCamera.fieldOfView = Mathf.SmoothStep(currentFOV, shiftFOV, t / (slowDownLength / 2f));
             yield return null;
         }
 
         for (float t = 0; mainCamera.fieldOfView != currentFOV; t += Time.unscaledDeltaTime)
         {
-            mainCamera.fieldOfView = Mathf.SmoothStep(shiftFOV, currentFOV, t / (slowDownLength / 2));
+            rotationReminder.transform.localPosition = new Vector2(0f, Mathf.SmoothStep(240f, 540f, t / (slowDownLength / 2f)));
+            mainCamera.fieldOfView = Mathf.SmoothStep(shiftFOV, currentFOV, t / (slowDownLength / 2f));
             yield return null;
         }
     }
